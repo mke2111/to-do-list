@@ -26,6 +26,7 @@ const newTodo = () => {
   priority.setAttribute('placeholder', 'To-Do priority');
 
   const submit = document.createElement('button');
+  submit.setAttribute('type', 'button');
   submit.textContent = 'Create To-Do';
   submit.classList.add('bg-blue-500', 'px-2');
 

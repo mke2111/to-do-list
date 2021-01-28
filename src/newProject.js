@@ -7,10 +7,11 @@ const newPro = () => {
 
   const title = document.createElement('input');
   title.setAttribute('type', 'text');
-  title.classList.add('border', 'border-gray-400', 'py-3');
+  title.classList.add('border', 'border-gray-400', 'py-3', 'pro-title');
   title.setAttribute('placeholder', 'Project title');
 
   const submit = document.createElement('button');
+  submit.setAttribute('type', 'button');
   submit.textContent = 'Create Project';
   submit.classList.add('bg-blue-500', 'px-2', 'sub-pro');
 
