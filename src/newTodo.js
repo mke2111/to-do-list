@@ -1,25 +1,29 @@
 const newTodo = () => {
   const formDiv = document.createElement('div');
-  formDiv.classList.add('w-3/6', 'mx-auto');
+  formDiv.classList.add('w-3/6', 'mx-auto', 'pt-8');
 
   const form = document.createElement('form');
-  form.classList.add('border', 'rounded-lg', 'border-gray-200');
+  form.classList.add('border', 'ro', 'border-gray-800', 'flex', 'flex-col');
 
   const title = document.createElement('input');
-  title. setAttribute('type', 'text');
-  title. setAttribute('placeholder', 'To-Do title');
+  title.setAttribute('type', 'text');
+  title.classList.add('border', 'border-gray-400', 'py-3');
+  title.setAttribute('placeholder', 'To-Do title');
 
   const description = document.createElement('input');
-  description. setAttribute('type', 'text');
-  description. setAttribute('placeholder', 'To-Do description');
+  description.setAttribute('type', 'text');
+  description.classList.add('border', 'border-gray-400', 'py-3');
+  description.setAttribute('placeholder', 'To-Do description');
 
   const dueDAte = document.createElement('input');
-  dueDAte. setAttribute('type', 'date');
-  dueDAte. setAttribute('placeholder', 'To-Do dueDAte');
+  dueDAte.setAttribute('type', 'date');
+  dueDAte.classList.add('border', 'border-gray-400', 'py-3');
+  dueDAte.setAttribute('placeholder', 'To-Do dueDAte');
 
   const priority = document.createElement('input');
-  priority. setAttribute('type', 'text');
-  priority. setAttribute('placeholder', 'To-Do priority');
+  priority.setAttribute('type', 'text');
+  priority.classList.add('border', 'border-gray-400', 'py-3');
+  priority.setAttribute('placeholder', 'To-Do priority');
 
   const submit = document.createElement('button');
   submit.textContent = 'Create To-Do';

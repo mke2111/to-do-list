@@ -12,9 +12,8 @@ const heading = () => {
   btnDiv.classList.add('flex', 'flex-row', 'justify-around', 'mx-40', 'pt-6');
 
   const todoBtn = document.createElement('button');
-  todoBtn.classList.add('bg-green-400', 'px-5', 'py-2', 'rounded-full');
+  todoBtn.classList.add('bg-green-400', 'px-5', 'py-2', 'rounded-full', 'todo-btn');
   todoBtn.innerText = 'New To-Do';
-  todoBtn.addEventListener('click', newTodo);
 
   const projectBtn = document.createElement('button');
   projectBtn.classList.add('bg-green-400', 'px-5', 'py-2', 'rounded-full');
