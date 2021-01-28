@@ -1,6 +1,6 @@
 const newTodo = () => {
   const formDiv = document.createElement('div');
-  formDiv.classList.add('w-3/6', 'mx-auto', 'pt-8');
+  formDiv.classList.add('w-3/6', 'mx-auto', 'pt-8', 'todo-form', 'hidden');
 
   const form = document.createElement('form');
   form.classList.add('border', 'ro', 'border-gray-800', 'flex', 'flex-col');

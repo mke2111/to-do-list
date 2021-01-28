@@ -1,5 +1,5 @@
 class Project {
-  constructor (name) {
-    this.name = name;
+  constructor (title) {
+    this.title = title;
   }
 }

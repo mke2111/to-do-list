@@ -1,5 +1,3 @@
-import newTodo from './newTodo';
-
 const heading = () => {
   const headDiv = document.createElement('div');
   headDiv.classList.add('text-center');
@@ -12,11 +10,11 @@ const heading = () => {
   btnDiv.classList.add('flex', 'flex-row', 'justify-around', 'mx-40', 'pt-6');
 
   const todoBtn = document.createElement('button');
-  todoBtn.classList.add('bg-green-400', 'px-5', 'py-2', 'rounded-full', 'todo-btn');
+  todoBtn.classList.add('bg-green-400', 'px-5', 'py-2', 'rounded-full', 'hidden', 'todo-btn');
   todoBtn.innerText = 'New To-Do';
 
   const projectBtn = document.createElement('button');
-  projectBtn.classList.add('bg-green-400', 'px-5', 'py-2', 'rounded-full');
+  projectBtn.classList.add('bg-green-400', 'px-5', 'py-2', 'rounded-full', 'pro-btn');
   projectBtn.innerText = 'New Project';
 
   btnDiv.appendChild(todoBtn);
