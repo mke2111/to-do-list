@@ -2,8 +2,8 @@ const card = () => {
   const cardContent = document.createElement('div');
   cardContent.classList.add('', '');
 
-  const form = document.createElement('div');
-  form.classList.add('', '');
+  const displayDiv = document.createElement('div');
+  displayDiv.classList.add('', '');
 
   const title = document.createElement('h4');
   title.classList.add('', '');

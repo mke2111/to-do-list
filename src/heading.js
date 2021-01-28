@@ -1,3 +1,5 @@
+import newTodo from './newTodo';
+
 const heading = () => {
   const headDiv = document.createElement('div');
   headDiv.classList.add('text-center');
@@ -12,6 +14,7 @@ const heading = () => {
   const todoBtn = document.createElement('button');
   todoBtn.classList.add('bg-green-400', 'px-5', 'py-2', 'rounded-full');
   todoBtn.innerText = 'New To-Do';
+  todoBtn.addEventListener('click', newTodo);
 
   const projectBtn = document.createElement('button');
   projectBtn.classList.add('bg-green-400', 'px-5', 'py-2', 'rounded-full');
