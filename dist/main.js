@@ -1,0 +1,1 @@
+(()=>{"use strict";const e=document.querySelector("#content");e.classList.add("bg-red-50","h-screen","pt-6"),e.appendChild((()=>{const e=document.createElement("div");e.classList.add("text-center","text-4xl");const t=document.createElement("h2");return t.classList.add("text-red-700"),t.innerText="Your daily To-Do list",e.appendChild(t),e})())})();
