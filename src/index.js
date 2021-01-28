@@ -25,6 +25,12 @@ proBtn.addEventListener('click', () => {
   }
 });
 
+const creaProBtn = document.querySelector('.sub-pro');
+
+// creaProBtn.addEventListener('click', () => {
+
+// });
+
 todoBtn.addEventListener('click', () => {
   if(formCtn.classList.contains('hidden')){
     formCtn.classList.remove('hidden');

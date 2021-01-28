@@ -12,7 +12,7 @@ const newPro = () => {
 
   const submit = document.createElement('button');
   submit.textContent = 'Create Project';
-  submit.classList.add('bg-blue-500', 'px-2');
+  submit.classList.add('bg-blue-500', 'px-2', 'sub-pro');
 
   proCtn.appendChild(formPro);
   formPro.appendChild(title);
