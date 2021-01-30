@@ -1,4 +1,4 @@
-const cardTodo = () => {
+const cardTodo = (todo) => {
   const cardContent = document.createElement('div');
   cardContent.classList.add('w-4/6', 'pt-9');
 
@@ -42,9 +42,9 @@ const cardTodo = () => {
   return cardContent;
 }
 
-const cardProject = () => {
+const cardProject = (project) => {
   const cardContent = document.createElement('div');
-  cardContent.classList.add('w-2/6', 'pt-9');
+  cardContent.classList.add('w-2/6', 'pt-9', 'project-card');
 
   const header = document.createElement('h2');
   header.innerText = 'Projects';
@@ -55,7 +55,8 @@ const cardProject = () => {
 
   const title = document.createElement('h4');
   title.classList.add();
-  title.innerText = `Title: title`;
+  // title.innerText = `Title: `;
+  title.innerText = `Title: ${title}`;
 
   displayDiv.appendChild(title);
   cardContent.appendChild(header);
@@ -66,7 +67,7 @@ const cardProject = () => {
 
 const card = () => {
   const display = document.createElement('div');
-  display.classList.add('flex', 'flex-row');
+  display.classList.add('flex', 'flex-row', 'pt-9', 'justify-around');
 
   display.appendChild(cardProject());
   display.appendChild(cardTodo());
@@ -74,4 +75,4 @@ const card = () => {
   return display;
 }
 
-export default card;
+export { cardTodo, cardProject, card };

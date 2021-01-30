@@ -3,7 +3,7 @@ const newTodo = () => {
   formDiv.classList.add('w-3/6', 'mx-auto', 'pt-8', 'todo-form', 'hidden');
 
   const form = document.createElement('form');
-  form.classList.add('border', 'ro', 'border-gray-800', 'flex', 'flex-col');
+  form.classList.add('border', 'border-gray-800', 'flex', 'flex-col');
 
   const title = document.createElement('input');
   title.setAttribute('type', 'text');

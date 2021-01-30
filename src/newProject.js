@@ -3,7 +3,7 @@ const newPro = () => {
   proCtn.classList.add('w-3/6', 'mx-auto', 'pt-8', 'pro-form', 'hidden');
 
   const formPro = document.createElement('form');
-  formPro.classList.add('border', 'ro', 'border-gray-800', 'flex', 'flex-col');
+  formPro.classList.add('border', 'border-gray-800', 'flex', 'flex-col');
 
   const title = document.createElement('input');
   title.setAttribute('type', 'text');
@@ -13,11 +13,12 @@ const newPro = () => {
   const submit = document.createElement('button');
   submit.setAttribute('type', 'button');
   submit.textContent = 'Create Project';
-  submit.classList.add('bg-blue-500', 'px-2', 'sub-pro');
+  submit.classList.add('bg-blue-500', 'px-2', 'sub-project');
 
-  proCtn.appendChild(formPro);
   formPro.appendChild(title);
   formPro.appendChild(submit);
+  proCtn.appendChild(formPro);
+
 
   return proCtn;
 }

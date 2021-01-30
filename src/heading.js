@@ -1,6 +1,6 @@
 const heading = () => {
   const headDiv = document.createElement('div');
-  headDiv.classList.add('text-center');
+  headDiv.classList.add('text-center', 'border-b-1', 'border-green-600');
 
   const headContent = document.createElement('h2');
   headContent.classList.add('text-red-700', 'text-4xl');
