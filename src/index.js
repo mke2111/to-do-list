@@ -82,11 +82,11 @@ const renderProject = () => {
   myProjects = JSON.parse(localStorage.getItem('myProjects'));
   if (myProjects != null) {
     projectCard.innerHTML = '';
-    const holderr = document.createElement('div');
-    holderr.classList.add('flex', 'flex-row', 'justify-around')
+    // const holderr = document.createElement('div');
+    // holderr.classList.add('flex', 'flex-row', 'justify-around')
     myProjects.forEach(project => {
-      holderr.appendChild(cardProject(project));
-      content.appendChild(holderr);
+      content.appendChild(cardProject(project));
+      // content.appendChild(holderr);
     });
   } else {
     myProjects = [];
