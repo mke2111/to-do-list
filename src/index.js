@@ -17,18 +17,14 @@ class Project {
   }
 }
 
-const display = document.createElement('div');
-display.classList.add('flex', 'flex-row', 'pt-9', 'justify-around');
-
-display.appendChild(cardProject());
-display.appendChild(cardTodo());
+// const display = document.createElement('div');
+// display.classList.add('flex', 'flex-row', 'pt-9', 'justify-around');
 
 content.appendChild(heading());
 content.appendChild(newTodo());
 content.appendChild(newPro());
-content.appendChild(display);
-// content.appendChild(cardProject());
-// content.appendChild(cardTodo());
+content.appendChild(cardProject());
+content.appendChild(cardTodo());
 
 let myProjects = [];
 let myTodos = [];
@@ -67,24 +63,37 @@ const saveTodoToLocalStorage = () => {
   localStorage.setItem('myTodos', JSON.stringify(myTodos));
 };
 
-const render = () => {
-  myProjects = JSON.parse(localStorage.getItem('myProjects'));
+const renderTodo = () => {
   myTodos = JSON.parse(localStorage.getItem('myTodos'));
-  if (myProjects != null && myTodos != null) {
-    projectCard.innerHTML = '';
+  if (myTodos != null) {
     todoCard.innerHTML = '';
-    myProjects.forEach(project => {
-      content.appendChild(cardProject(project));
-    });
-
+    const holder = document.createElement('div');
+    holder.classList.add('flex', 'flex-row', 'justify-around')
     myTodos.forEach(todo => {
-      content.appendChild(cardTodo(todo));
+      holder.appendChild(cardTodo(todo));
+      content.appendChild(holder);
     });
   } else {
-    myProjects = [];
     myTodos = [];
   }
 };
+
+const renderProject = () => {
+  myProjects = JSON.parse(localStorage.getItem('myProjects'));
+  if (myProjects != null) {
+    projectCard.innerHTML = '';
+    const holderr = document.createElement('div');
+    holderr.classList.add('flex', 'flex-row', 'justify-around')
+    myProjects.forEach(project => {
+      holderr.appendChild(cardProject(project));
+      content.appendChild(holderr);
+    });
+  } else {
+    myProjects = [];
+  }
+};
+
+
 
 const clearInput = () => {
   projectTitle.value = '';
@@ -110,7 +119,7 @@ const saveProject = () => {
     formPro.classList.remove('block');
     formPro.classList.add('hidden');
 
-    render();
+    renderProject();
   }
 }
 
@@ -130,7 +139,7 @@ const saveTodo = () => {
     formCtn.classList.remove('block');
     formCtn.classList.add('hidden');
 
-    render();
+    renderTodo();
   }
 }
 
@@ -189,4 +198,7 @@ if (submitTodo) {
   });
 }
 
-
+window.onload = () => {
+  renderProject();
+  renderTodo();
+};
