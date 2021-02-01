@@ -1,5 +1,6 @@
 import heading from './heading';
 import Todo from './todo';
+import Project from './project';
 import newTodo from './newTodo';
 import newPro from './newProject';
 import cardProject from './status';
@@ -9,16 +10,6 @@ import cardTodo from './card';
 
 const content = document.querySelector('#content');
 content.classList.add('bg-purple-300', 'h-screen', 'p-6');
-
-class Project {
-  constructor(name) {
-    this.name = name;
-    // this.Id = Id;
-  }
-}
-
-// const display = document.createElement('div');
-// display.classList.add('flex', 'flex-row', 'pt-9', 'justify-around');
 
 content.appendChild(heading());
 content.appendChild(newTodo());
@@ -82,18 +73,16 @@ const renderProject = () => {
   myProjects = JSON.parse(localStorage.getItem('myProjects'));
   if (myProjects != null) {
     projectCard.innerHTML = '';
-    // const holderr = document.createElement('div');
-    // holderr.classList.add('flex', 'flex-row', 'justify-around')
+    const holderr = document.createElement('div');
+    holderr.classList.add('flex', 'flex-row', 'justify-around')
     myProjects.forEach(project => {
       content.appendChild(cardProject(project));
-      // content.appendChild(holderr);
+      content.appendChild(holderr);
     });
   } else {
     myProjects = [];
   }
 };
-
-
 
 const clearInput = () => {
   projectTitle.value = '';
