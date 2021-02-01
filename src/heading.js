@@ -11,7 +11,7 @@ const heading = () => {
 
   const todoBtn = document.createElement('button');
   todoBtn.setAttribute('type', 'button');
-  todoBtn.classList.add('bg-green-400', 'px-5', 'py-2', 'rounded-full', 'hidden', 'todo-btn');
+  todoBtn.classList.add('bg-green-400', 'px-5', 'py-2', 'rounded-full', 'hiden', 'todo-btn');
   todoBtn.innerText = 'New To-Do';
 
   const projectBtn = document.createElement('button');

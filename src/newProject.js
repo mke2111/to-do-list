@@ -3,7 +3,7 @@ const newPro = () => {
   proCtn.classList.add('w-3/6', 'mx-auto', 'pt-8', 'pro-form', 'hidden');
 
   const formPro = document.createElement('form');
-  formPro.classList.add('border', 'border-gray-800', 'flex', 'flex-col');
+  formPro.classList.add('border', 'border-gray-300', 'flex', 'flex-col');
 
   const title = document.createElement('input');
   title.setAttribute('type', 'text');

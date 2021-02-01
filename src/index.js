@@ -1,32 +1,46 @@
 import heading from './heading';
+import Todo from './todo';
 import newTodo from './newTodo';
 import newPro from './newProject';
-import { cardTodo, cardProject, card} from './card';
+import cardProject from './status';
+import cardTodo from './card';
+// import card from './allDisplays';
 
-// class Project {
-//   constructor (title) {
-//     this.title = title;
-//     // this.Id = Id;
-//   }
-// }
-
-function Project(title = 'default') {
-  this.title = title;
-}
-
-let myProjects = [];
 
 const content = document.querySelector('#content');
 content.classList.add('bg-purple-300', 'h-screen', 'p-6');
 
+class Project {
+  constructor(name) {
+    this.name = name;
+    // this.Id = Id;
+  }
+}
 
+const display = document.createElement('div');
+display.classList.add('flex', 'flex-row', 'pt-9', 'justify-around');
+
+display.appendChild(cardProject());
+display.appendChild(cardTodo());
 
 content.appendChild(heading());
 content.appendChild(newTodo());
 content.appendChild(newPro());
-content.appendChild(card());
+content.appendChild(display);
+// content.appendChild(cardProject());
+// content.appendChild(cardTodo());
 
-const title = document.querySelector('.pro-title');
+let myProjects = [];
+let myTodos = [];
+
+const todoTitle = document.querySelector('.todo-title');
+const todoDescription = document.querySelector('.todo-description');
+const todoDate = document.querySelector('.todo-date');
+const todoPriority = document.querySelector('.todo-priority');
+const submitTodo = document.querySelector('.sub-todo');
+const todoCard = document.querySelector('.todo-card');
+
+const projectTitle = document.querySelector('.pro-title');
 const projectCard = document.querySelector('.project-card');
 const submitProject = document.querySelector('.sub-project');
 
@@ -35,9 +49,6 @@ const formCtn = document.querySelector('.todo-form');
 
 const proBtn = document.querySelector('.pro-btn');
 const formPro = document.querySelector('.pro-form');
-
-
-
 
 // const updateLocalStorage = () => {
 //   localStorage.setItem('myProjects', JSON.stringify(myProjects));
@@ -49,37 +60,81 @@ const formPro = document.querySelector('.pro-form');
 // save project to localstorage
 const saveToLocalStorage = () => {
   localStorage.setItem('myProjects', JSON.stringify(myProjects));
-}
+};
+
+// save todo to localstorage
+const saveTodoToLocalStorage = () => {
+  localStorage.setItem('myTodos', JSON.stringify(myTodos));
+};
+
+const render = () => {
+  myProjects = JSON.parse(localStorage.getItem('myProjects'));
+  myTodos = JSON.parse(localStorage.getItem('myTodos'));
+  if (myProjects != null && myTodos != null) {
+    projectCard.innerHTML = '';
+    todoCard.innerHTML = '';
+    myProjects.forEach(project => {
+      content.appendChild(cardProject(project));
+    });
+
+    myTodos.forEach(todo => {
+      content.appendChild(cardTodo(todo));
+    });
+  } else {
+    myProjects = [];
+    myTodos = [];
+  }
+};
+
+const clearInput = () => {
+  projectTitle.value = '';
+  todoTitle.value = '';
+  todoDescription.value = '';
+  todoPriority.value = '';
+  todoDate.value = '';
+};
 
 // save project
 const saveProject = () => {
   // console.log('six');
 
-  if (title.value === '') {
+  if (projectTitle.value === '') {
     alert('Add a project name');
   } else {
-    const project = new Project(title.value);
+    const project = new Project(projectTitle.value);
     myProjects.push(project);
+    console.log(myProjects);
+
     saveToLocalStorage();
+    clearInput();
+    formPro.classList.remove('block');
+    formPro.classList.add('hidden');
+
+    render();
+  }
+}
+
+// save todo
+const saveTodo = () => {
+  // console.log('six');
+
+  if (todoTitle.value === '' || todoDescription.value === '' || todoPriority.value === '' || todoDate.value === '') {
+    alert('Add all todo fields');
+  } else {
+    const todo = new Todo(todoTitle.value, todoDescription.value, todoDate.value, todoPriority.value);
+    myTodos.push(todo);
+    console.log(myTodos);
+
+    saveTodoToLocalStorage();
+    clearInput();
+    formCtn.classList.remove('block');
+    formCtn.classList.add('hidden');
 
     render();
   }
 }
 
 
-// const titlePro = document.querySelector('.pro-title');
-
-const render = () => {
-  myProjects = JSON.parse(localStorage.getItem('myProjects'));
-  if (myProjects != null) {
-    projectCard.innerHTML = '';
-    myProjects.forEach(project => {
-      cardProject(project);
-    });
-  } else {
-    myProjects = [];
-  }
-};
 
 // const addNewProject = () => {
 //   let curentProId = Number(localStorage.getItem('lasProjectId'));
@@ -114,12 +169,6 @@ todoBtn.addEventListener('click', () => {
   }
 });
 
-// if (submitProject) {
-  submitProject.addEventListener('click', () => {
-    saveProject();
-  });
-// }
-
 proBtn.addEventListener('click', () => {
   if(formPro.classList.contains('hidden')){
     formPro.classList.remove('hidden');
@@ -129,5 +178,15 @@ proBtn.addEventListener('click', () => {
     formPro.classList.add('hidden');
   }
 });
+
+submitProject.addEventListener('click', () => {
+  saveProject();
+});
+
+if (submitTodo) {
+  submitTodo.addEventListener('click', () => {
+    saveTodo();
+  });
+}
 
 
