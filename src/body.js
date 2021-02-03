@@ -113,6 +113,18 @@ const body = () => {
   listContainer.appendChild(btnDelList);
   bodyCont.appendChild(tasksCont);
 
+  // template
+  const list = document.createElement('div');
+  list.id = 'template';
+  const input = document.createElement('input');
+  input.type = 'checkbox';
+  const label = document.createElement('label');
+
+  list.appendChild(input);
+  list.appendChild(label);
+
+
+
   return bodyCont
 }
 

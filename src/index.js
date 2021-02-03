@@ -21,18 +21,30 @@ const deleteProBtn = document.querySelector('.btn-delet');
 const todoContainer = document.querySelector('.task-cont');
 const todoLists = document.querySelector('.all-lists');
 const projectTitle = document.querySelector('.list-title');
-const newListForm = document.querySelector('.list-form');
+const listForm = document.querySelector('.list-form');
 const listTitle = document.querySelector('.list-title-input');
 const listDescription = document.querySelector('.list-description-input');
 const listDueDate = document.querySelector('.list-due-date-input');
 const listPriority = document.querySelector('.list-priority-input');
 const deleteListBtn = document.querySelector('.list-delete-btn');
+const listTemp = document.getElementById('template');
 
 const createList = (nam) => {
   return { 
     id: Date.now().toString(),
     name: nam,
-    tasks: []
+    lists: []
+  }
+}
+
+const createTodo = (title, description, duedate, priority) => {
+  return { 
+    id: Date.now().toString(),
+    title: title,
+    description: description,
+    duedate: duedate,
+    priority: priority,
+    complete: false
   }
 }
 
@@ -51,11 +63,30 @@ const render = ()=> {
   clearElement(listConte);
   renderProjects();
 
+  const selectedProject = projects.find(project => project.id === selectedProId);
   if (selectedProId == null) {
     todoContainer.style.display = 'none';
   } else {
     todoContainer.style.display = '';
+    projectTitle.innerText = selectedProject.name;
+    clearElement(todoLists);
+    renderLists(selectedProject); 
   }
+}
+
+const renderLists = (selectedProject) => {
+  selectedProject.lists.forEach(list => {
+    const listElement = document.importNode(listTemp.contentEditable, true);
+    const checkbox = listElement.querySelector('input');
+    checkbox.id = list.id;
+    checkbox.checked = list.complete;
+
+    const label = listElement.querySelector('label');
+    label.htmlFor = list.id;
+    label.append(list.name);
+
+    todoLists.appendChild(listElement);
+  })
 }
 
 const renderProjects = () => {
@@ -83,7 +114,7 @@ bigCont.addEventListener('click', e => {
   }
 })
 
-newProForm.addEventListener('click', e => {
+newProForm.addEventListener('submit', e => {
   e.preventDefault();
   const proName = newProInput.value;
   if(proName == null || proName === '') return
@@ -99,5 +130,20 @@ deleteProBtn.addEventListener('click', e => {
   selectedProId = null;
   saveAndRender();
 })
+
+listForm.addEventListener('click', e => {
+  e.preventDefault();
+  if(listTitle.value == null || listTitle.value === '' || listDescription.value == null || listDescription.value === '' || listDueDate.value == null || listDueDate.value === '' || listPriority.value == null || listPriority.value === '') return;
+
+  const listTodo = createTodo(listTitle.value, listDescription.value, listDueDate.value, listPriority.value);
+  listTitle.value = null;
+  listDescription.value = null;
+  listDueDate.value = null;
+  listPriority.value = null;
+  
+  const selectedProject = projects.find(project => project.id === selectedProId);
+  selectedProject.lists.push(listTodo);
+  saveAndRender()
+});
 
 render();
