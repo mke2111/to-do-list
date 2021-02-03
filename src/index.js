@@ -17,6 +17,15 @@ const newProForm = document.querySelector('.pro-form');
 const newProInput = document.querySelector('.pro-input');
 const deleteProBtn = document.querySelector('.btn-delet');
 
+// todos
+const todoContainer = document.querySelector('.all-lists');
+const newListForm = document.querySelector('.list-form');
+const listTitle = document.querySelector('.list-title-input');
+const listDescription = document.querySelector('.list-description-input');
+const listDueDate = document.querySelector('.list-due-date-input');
+const listPriority = document.querySelector('.list-priority-input');
+const deleteProBtn = document.querySelector('.btn-delet');
+
 const createList = (nam) => {
   return { 
     id: Date.now().toString(),
@@ -62,7 +71,7 @@ bigCont.addEventListener('click', e => {
   }
 })
 
-newProForm.addEventListener('submit', e => {
+newProForm.addEventListener('click', e => {
   e.preventDefault();
   const proName = newProInput.value;
   if(proName == null || proName === '') return
