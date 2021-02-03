@@ -82,7 +82,7 @@ const body = () => {
 
   const inputListDueDate = document.createElement('input');
   inputListDueDate.classList.add('list-due-date-input', 'border-b', 'border-gray-600', 'pt-2');
-  inputListDueDate.setAttribute('type', 'text');
+  inputListDueDate.setAttribute('type', 'date');
   inputListDueDate.setAttribute('placeholder', 'Set Due Date');
 
   const inputListPriority = document.createElement('input');
@@ -119,10 +119,12 @@ const body = () => {
   const input = document.createElement('input');
   input.type = 'checkbox';
   const label = document.createElement('label');
+  const span = document.createElement('span');
+  span.classList.add('custom-checkbox');
 
   list.appendChild(input);
   list.appendChild(label);
-
+  label.appendChild(span);
 
 
   return bodyCont

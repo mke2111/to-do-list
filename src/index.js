@@ -15,6 +15,7 @@ bigCont.appendChild(body());
 const listConte = document.querySelector('.all-projects');
 const newProForm = document.querySelector('.pro-form');
 const newProInput = document.querySelector('.pro-input');
+const addProBtn = document.querySelector('.pro-btn');
 const deleteProBtn = document.querySelector('.btn-delet');
 
 // todos
@@ -123,7 +124,17 @@ newProForm.addEventListener('submit', e => {
   projects.push(listPro)
   saveAndRender()
 });
-console.log(deleteProBtn)
+
+addProBtn.addEventListener('click', e => {
+  e.preventDefault();
+  const proName = newProInput.value;
+  if(proName == null || proName === '') return
+  const listPro = createList(proName);
+  newProInput.value = null;
+  projects.push(listPro)
+  saveAndRender()
+});
+
 
 deleteProBtn.addEventListener('click', e => {
   projects = projects.filter(pro => pro.id !== selectedProId);
