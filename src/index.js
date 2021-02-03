@@ -18,13 +18,15 @@ const newProInput = document.querySelector('.pro-input');
 const deleteProBtn = document.querySelector('.btn-delet');
 
 // todos
-const todoContainer = document.querySelector('.all-lists');
+const todoContainer = document.querySelector('.task-cont');
+const todoLists = document.querySelector('.all-lists');
+const projectTitle = document.querySelector('.list-title');
 const newListForm = document.querySelector('.list-form');
 const listTitle = document.querySelector('.list-title-input');
 const listDescription = document.querySelector('.list-description-input');
 const listDueDate = document.querySelector('.list-due-date-input');
 const listPriority = document.querySelector('.list-priority-input');
-const deleteProBtn = document.querySelector('.btn-delet');
+const deleteListBtn = document.querySelector('.list-delete-btn');
 
 const createList = (nam) => {
   return { 
@@ -47,13 +49,23 @@ const save = () => {
 
 const render = ()=> {
   clearElement(listConte);
+  renderProjects();
+
+  if (selectedProId == null) {
+    todoContainer.style.display = 'none';
+  } else {
+    todoContainer.style.display = '';
+  }
+}
+
+const renderProjects = () => {
   projects.forEach(project => {
     const projElement = document.createElement('li');
     projElement.dataset.projId = project.id
     projElement.classList.add('list-proj');
     projElement.innerText = project.name;
     if(project.id === selectedProId) {
-      projElement.classList.add('active-pro')
+      projElement.classList.add('active-pro');
     }
     listConte.appendChild(projElement);
   })
