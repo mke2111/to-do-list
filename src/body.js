@@ -50,97 +50,101 @@ const body = () => {
 
   // Todo List section
 
-  const tasksCont = document.createElement('div');
-  tasksCont.classList.add('task-cont');
+  // const tasksCont = document.createElement('div');
+  // tasksCont.classList.add('task-cont');
 
-  const listTitleCont = document.createElement('div');
-  listTitleCont.classList.add('list-title-cont', 'flex');
+  // const listTitleCont = document.createElement('div');
+  // listTitleCont.classList.add('list-title-cont', 'flex');
 
-  const listTitle = document.createElement('h2');
-  listTitle.classList.add('list-title');
-  listTitle.innerHTML = 'MY LISTS';
+  // const listTitle = document.createElement('h2');
+  // listTitle.classList.add('list-title');
+  // listTitle.innerHTML = 'MY LISTS';
 
-  const listCount = document.createElement('p');
-  listCount.classList.add('list-count');
-  listCount.innerHTML = '1 task remaining';
+  // const listCount = document.createElement('p');
+  // listCount.classList.add('list-count');
+  // listCount.innerHTML = '1 task remaining';
 
-  const listContainer = document.createElement('div');
-  listContainer.classList.add('list-container');
+  // const listContainer = document.createElement('div');
+  // listContainer.classList.add('list-container');
 
-  const ulList = document.createElement('div');
-  ulList.classList.add('all-lists');
+  // const ulList = document.createElement('div');
+  // ulList.classList.add('all-lists');
 
-  const formList = document.createElement('form');
-  formList.setAttribute('action', '');
-  formList.classList.add('list-form', 'hidden', 'flex-col', 'border', 'border-gray-400', 'rounded-md', 'p-3' );
+  // const formList = document.createElement('form');
+  // formList.setAttribute('action', '');
+  // formList.classList.add('list-form', 'hidden', 'flex-col', 'border', 'border-gray-400', 'rounded-md', 'p-3' );
 
-  const inputListTitle = document.createElement('input');
-  inputListTitle.classList.add('list-title-input', 'border-b', 'border-gray-600', 'pt-2');
-  inputListTitle.setAttribute('type', 'text');
-  inputListTitle.setAttribute('placeholder', 'Add Title');
+  // const inputListTitle = document.createElement('input');
+  // inputListTitle.classList.add('list-title-input', 'border-b', 'border-gray-600', 'pt-2');
+  // inputListTitle.setAttribute('type', 'text');
+  // inputListTitle.setAttribute('placeholder', 'Add Title');
 
-  const inputListDescription = document.createElement('input');
-  inputListDescription.classList.add('list-description-input', 'border-b', 'border-gray-600', 'pt-2');
-  inputListDescription.setAttribute('type', 'text');
-  inputListDescription.setAttribute('placeholder', 'Add Description');
+  // const inputListDescription = document.createElement('input');
+  // inputListDescription.classList.add('list-description-input', 'border-b', 'border-gray-600', 'pt-2');
+  // inputListDescription.setAttribute('type', 'text');
+  // inputListDescription.setAttribute('placeholder', 'Add Description');
 
-  const inputListDueDate = document.createElement('input');
-  inputListDueDate.classList.add('list-due-date-input', 'border-b', 'border-gray-600', 'pt-2');
-  inputListDueDate.setAttribute('type', 'date');
-  inputListDueDate.setAttribute('placeholder', 'Set Due Date');
+  // const inputListDueDate = document.createElement('input');
+  // inputListDueDate.classList.add('list-due-date-input', 'border-b', 'border-gray-600', 'pt-2');
+  // inputListDueDate.setAttribute('type', 'date');
+  // inputListDueDate.setAttribute('placeholder', 'Set Due Date');
 
-  const inputListPriority = document.createElement('input');
-  inputListPriority.classList.add('list-priority-input', 'border-b', 'border-gray-600', 'pt-2');
-  inputListPriority.setAttribute('type', 'text');
-  inputListPriority.setAttribute('placeholder', 'Set Priority');
+  // const inputListPriority = document.createElement('input');
+  // inputListPriority.classList.add('list-priority-input', 'border-b', 'border-gray-600', 'pt-2');
+  // inputListPriority.setAttribute('type', 'text');
+  // inputListPriority.setAttribute('placeholder', 'Set Priority');
 
-  const btnAddList = document.createElement('button');
-  btnAddList.setAttribute('type', 'button');
-  btnAddList.classList.add('list-add-btn', 'w-max', 'mx-auto', 'px-2', 'mt-2', 'bg-green-400', 'rounded-md');
-  btnAddList.innerHTML = 'Create';
+  // const btnAddList = document.createElement('button');
+  // btnAddList.setAttribute('type', 'button');
+  // btnAddList.classList.add('list-add-btn', 'w-max', 'mx-auto', 'px-2', 'mt-2', 'bg-green-400', 'rounded-md');
+  // btnAddList.innerHTML = 'Create';
 
-  const btnNewTask = document.createElement('button');
-  btnNewTask.setAttribute('type','button');
-  btnNewTask.classList.add('btn-new-task', 'w-max', 'mx-auto', 'px-2', 'mt-2', 'bg-green-400', 'rounded-md');
-  btnNewTask.innerHTML = 'New Task';
+  // const btnNewTask = document.createElement('button');
+  // btnNewTask.setAttribute('type','button');
+  // btnNewTask.classList.add('btn-new-task', 'w-max', 'mx-auto', 'px-2', 'mt-2', 'bg-green-400', 'rounded-md');
+  // btnNewTask.innerHTML = 'New Task';
 
-  const btnDelList = document.createElement('button');
-  btnDelList.setAttribute('type', 'button');
-  btnDelList.classList.add('list-delete-btn', 'bg-red-400', 'rounded-md');
-  btnDelList.innerHTML = 'Delete Completed task';
+  // const btnDelList = document.createElement('button');
+  // btnDelList.setAttribute('type', 'button');
+  // btnDelList.classList.add('list-delete-btn', 'bg-red-400', 'rounded-md');
+  // btnDelList.innerHTML = 'Delete Completed task';
 
   // template
-  const list = document.createElement('template');
-  list.id = 'list-template';
-  const listContTemp = document.createElement('div');
-  listContTemp.classList.add('temp-cont');
-  const input = document.createElement('input');
-  input.classList.add('list-input');
-  input.type = 'checkbox';
-  const label = document.createElement('label');
-  const span = document.createElement('span');
-  span.classList.add('custom-checkbox');
+  // const list = document.createElement('template');
+  // list.id = 'list-template';
 
-  list.appendChild(listContTemp);
-  listContTemp.appendChild(input);
-  listContTemp.appendChild(label);
-  label.appendChild(span);
+  // const listContTemp = document.createElement('div');
+  // listContTemp.classList.add('temp-cont');
 
-  listTitleCont.appendChild(listTitle);
-  listTitleCont.appendChild(listCount);
-  listContainer.appendChild(ulList);
-  formList.appendChild(inputListTitle);
-  formList.appendChild(inputListDescription);
-  formList.appendChild(inputListDueDate);
-  formList.appendChild(inputListPriority);
-  formList.appendChild(btnAddList);
-  tasksCont.appendChild(listTitleCont);
-  tasksCont.appendChild(listContainer);
-  listContainer.appendChild(formList);
-  listContainer.appendChild(btnNewTask);
-  listContainer.appendChild(btnDelList);
-  bodyCont.appendChild(tasksCont);
-  bodyCont.appendChild(list);
+  // const input = document.createElement('input');
+  // input.classList.add('list-input');
+  // input.type = 'checkbox';
+
+  // const label = document.createElement('label');
+  // label.classList.add('list-label');
+  // const span = document.createElement('span');
+  // span.classList.add('custom-checkbox');
+
+  // list.appendChild(listContTemp);
+  // listContTemp.appendChild(input);
+  // listContTemp.appendChild(label);
+  // label.appendChild(span);
+
+  // listTitleCont.appendChild(listTitle);
+  // listTitleCont.appendChild(listCount);
+  // listContainer.appendChild(ulList);
+  // formList.appendChild(inputListTitle);
+  // formList.appendChild(inputListDescription);
+  // formList.appendChild(inputListDueDate);
+  // formList.appendChild(inputListPriority);
+  // formList.appendChild(btnAddList);
+  // tasksCont.appendChild(listTitleCont);
+  // tasksCont.appendChild(listContainer);
+  // listContainer.appendChild(formList);
+  // listContainer.appendChild(btnNewTask);
+  // listContainer.appendChild(btnDelList);
+  // bodyCont.appendChild(tasksCont);
+  // bodyCont.appendChild(list);
 
   
 
