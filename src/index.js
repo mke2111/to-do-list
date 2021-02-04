@@ -15,6 +15,7 @@ bigCont.appendChild(body());
 const listConte = document.querySelector('.all-projects');
 const newProForm = document.querySelector('.pro-form');
 const newProInput = document.querySelector('.pro-input');
+const btnAddPro = document.querySelector('.pro-btn');
 const deleteProBtn = document.querySelector('.btn-delet');
 
 const createList = (nam) => {
@@ -38,6 +39,10 @@ const save = () => {
 
 const render = ()=> {
   clearElement(listConte);
+  renderProject();
+}
+
+const renderProject = ()=> {
   projects.forEach(project => {
     const projElement = document.createElement('li');
     projElement.dataset.projId = project.id
@@ -71,7 +76,17 @@ newProForm.addEventListener('submit', e => {
   projects.push(listPro)
   saveAndRender()
 });
-console.log(deleteProBtn)
+
+btnAddPro.addEventListener('click', e => {
+  e.preventDefault();
+  const proName = newProInput.value;
+  if(proName == null || proName === '') return
+  const listPro = createList(proName);
+  newProInput.value = null;
+  projects.push(listPro)
+  saveAndRender()
+});
+
 
 deleteProBtn.addEventListener('click', e => {
   projects = projects.filter(pro => pro.id !== selectedProId);
