@@ -54,21 +54,25 @@ const body = () => {
   tasksCont.classList.add('task-cont');
 
   const listTitleCont = document.createElement('div');
-  listTitleCont.classList.add('list-title-cont');
+  listTitleCont.classList.add('list-title-cont', 'flex');
 
   const listTitle = document.createElement('h2');
   listTitle.classList.add('list-title');
   listTitle.innerHTML = 'MY LISTS';
 
+  const listCount = document.createElement('p');
+  listCount.classList.add('list-count');
+  listCount.innerHTML = '1 task remaining';
+
   const listContainer = document.createElement('div');
   listContainer.classList.add('list-container');
 
-  const ulList = document.createElement('ul');
+  const ulList = document.createElement('div');
   ulList.classList.add('all-lists');
 
   const formList = document.createElement('form');
   formList.setAttribute('action', '');
-  formList.classList.add('list-form', 'flex', 'flex-col', 'border', 'border-gray-400', 'rounded-md', 'p-3' );
+  formList.classList.add('list-form', 'hidden', 'flex-col', 'border', 'border-gray-400', 'rounded-md', 'p-3' );
 
   const inputListTitle = document.createElement('input');
   inputListTitle.classList.add('list-title-input', 'border-b', 'border-gray-600', 'pt-2');
@@ -93,14 +97,37 @@ const body = () => {
   const btnAddList = document.createElement('button');
   btnAddList.setAttribute('type', 'button');
   btnAddList.classList.add('list-add-btn', 'w-max', 'mx-auto', 'px-2', 'mt-2', 'bg-green-400', 'rounded-md');
-  btnAddList.innerHTML = 'New List';
+  btnAddList.innerHTML = 'Create';
+
+  const btnNewTask = document.createElement('button');
+  btnNewTask.setAttribute('type','button');
+  btnNewTask.classList.add('btn-new-task', 'w-max', 'mx-auto', 'px-2', 'mt-2', 'bg-green-400', 'rounded-md');
+  btnNewTask.innerHTML = 'New Task';
 
   const btnDelList = document.createElement('button');
   btnDelList.setAttribute('type', 'button');
   btnDelList.classList.add('list-delete-btn', 'bg-red-400', 'rounded-md');
-  btnDelList.innerHTML = 'Delete List';
+  btnDelList.innerHTML = 'Delete Completed task';
+
+  // template
+  const list = document.createElement('template');
+  list.id = 'list-template';
+  const listContTemp = document.createElement('div');
+  listContTemp.classList.add('temp-cont');
+  const input = document.createElement('input');
+  input.classList.add('list-input');
+  input.type = 'checkbox';
+  const label = document.createElement('label');
+  const span = document.createElement('span');
+  span.classList.add('custom-checkbox');
+
+  list.appendChild(listContTemp);
+  listContTemp.appendChild(input);
+  listContTemp.appendChild(label);
+  label.appendChild(span);
 
   listTitleCont.appendChild(listTitle);
+  listTitleCont.appendChild(listCount);
   listContainer.appendChild(ulList);
   formList.appendChild(inputListTitle);
   formList.appendChild(inputListDescription);
@@ -110,21 +137,12 @@ const body = () => {
   tasksCont.appendChild(listTitleCont);
   tasksCont.appendChild(listContainer);
   listContainer.appendChild(formList);
+  listContainer.appendChild(btnNewTask);
   listContainer.appendChild(btnDelList);
   bodyCont.appendChild(tasksCont);
+  bodyCont.appendChild(list);
 
-  // template
-  const list = document.createElement('div');
-  list.id = 'template';
-  const input = document.createElement('input');
-  input.type = 'checkbox';
-  const label = document.createElement('label');
-  const span = document.createElement('span');
-  span.classList.add('custom-checkbox');
-
-  list.appendChild(input);
-  list.appendChild(label);
-  label.appendChild(span);
+  
 
 
   return bodyCont

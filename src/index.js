@@ -28,13 +28,23 @@ const listDescription = document.querySelector('.list-description-input');
 const listDueDate = document.querySelector('.list-due-date-input');
 const listPriority = document.querySelector('.list-priority-input');
 const deleteListBtn = document.querySelector('.list-delete-btn');
-const listTemp = document.getElementById('template');
+const listTemp = document.querySelector('#list-template');
+const newListInput = document.querySelector('.list-input');
+const dispBtnTask = document.querySelector('.btn-new-task');
+const listCount = document.querySelector('.list-count');
 
 const createList = (nam) => {
   return { 
     id: Date.now().toString(),
     name: nam,
-    lists: []
+    lists: [{
+      id: 1,
+      title: 'sdqweq',
+      description: 'aasdqwd',
+      duedate: 'adqweqw',
+      priority: 'asdqwe',
+      complete: false
+    }]
   }
 }
 
@@ -70,15 +80,23 @@ const render = ()=> {
   } else {
     todoContainer.style.display = '';
     projectTitle.innerText = selectedProject.name;
+    renderCountTasks(selectedProject)
     clearElement(todoLists);
     renderLists(selectedProject); 
   }
 }
 
+const renderCountTasks = (selectedProject) => {
+  const incomList = selectedProject.lists.filter(list => !list.complete).length;
+  const listString = incomList === 1 ? 'task' : 'tasks';
+  listCount.innerHTML = `${incomList} ${listString} remaining`;
+}
+
 const renderLists = (selectedProject) => {
   selectedProject.lists.forEach(list => {
-    const listElement = document.importNode(listTemp.contentEditable, true);
-    const checkbox = listElement.querySelector('input');
+    const listElement = document.importNode(listTemp.content, true);
+    const checkbox = listElement.querySelector('.list-input');
+    console.log(checkbox);
     checkbox.id = list.id;
     checkbox.checked = list.complete;
 
@@ -140,6 +158,17 @@ deleteProBtn.addEventListener('click', e => {
   projects = projects.filter(pro => pro.id !== selectedProId);
   selectedProId = null;
   saveAndRender();
+})
+
+dispBtnTask.addEventListener('click', e => {
+  e.preventDefault();
+  if(listForm.classList.contains('hidden')){
+    listForm.classList.remove('hidden');
+    listForm.classList.add('flex');
+  } else {
+    listForm.classList.remove('flex');
+    listForm.classList.add('hidden');
+  }
 })
 
 listForm.addEventListener('click', e => {
