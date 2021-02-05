@@ -5,7 +5,7 @@
 
 > All projects and to-dos are stored in the browser's local storage.
 
-![screenshot](./)
+![screenshot](./src/img/screenshot.png)
 
 
 ## Built
