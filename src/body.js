@@ -96,6 +96,16 @@ const body = () => {
   taskFormBtn.type = 'button';
   taskFormBtn.innerHTML = 'Create';
 
+  // Task delete button
+
+  const deleteCont = document.createElement('div');
+  deleteCont.classList.add('delete-cont');
+
+  const clearTaskBtn = document.createElement('button');
+  clearTaskBtn.classList.add('clear-btn');
+  clearTaskBtn.type = 'button';
+  clearTaskBtn.innerHTML = 'Clear Completed Tasks';
+
   bodyCont.appendChild(projectCont);
   bodyCont.appendChild(tasksCont);
 
@@ -111,6 +121,7 @@ const body = () => {
 
   tasksCont.appendChild(taskTitleCont);
   tasksCont.appendChild(tasksBodyCont);
+  tasksCont.appendChild(deleteCont);
 
   taskTitleCont.appendChild(taskTitle);
   taskTitleCont.appendChild(tasksCount);
@@ -124,6 +135,8 @@ const body = () => {
   taskFormCont.appendChild(taskForm);
   taskForm.appendChild(taskFormInput);
   taskForm.appendChild(taskFormBtn);
+
+  deleteCont.appendChild(clearTaskBtn);
 
 
   return bodyCont

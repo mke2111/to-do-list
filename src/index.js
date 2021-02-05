@@ -12,11 +12,20 @@ const bigCont = document.querySelector('#content');
 bigCont.appendChild(header());
 bigCont.appendChild(body());
 
+// Project's variables
+
 const listConte = document.querySelector('.all-projects');
 const newProForm = document.querySelector('.pro-form');
 const newProInput = document.querySelector('.pro-input');
 const btnAddPro = document.querySelector('.pro-btn');
 const deleteProBtn = document.querySelector('.btn-delet');
+
+// Task's variables
+
+const tasksCont = document.querySelector('.task-cont');
+const taskTitle = document.querySelector('.task-title');
+const tasksCount = document.querySelector('.tasks-count');
+const tasksConte = document.querySelector('.task-conteiner');
 
 const createList = (nam) => {
   return { 
@@ -37,9 +46,25 @@ const save = () => {
   localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedProId);
 }
 
+const renderTaskCount = (selectedPro) => {
+  const incompleteTaskCount = selectedPro.tasks.filter(task => !task.complete).length;
+  const taskString = incompleteTaskCount === 1 ? 'task' : 'tasks' ;
+  tasksCount.innerHTML = `${incompleteTaskCount} ${taskString} remaining`;
+}
+
 const render = ()=> {
   clearElement(listConte);
   renderProject();
+
+  const selectedPro = projects.find(pro => pro.id === selectedProId);
+
+  if(selectedProId == null) {
+    tasksCont.style.display = 'none';
+  } else {
+    tasksCont.style.display = '';
+    taskTitle.innerHTML = selectedPro.name;
+    renderTaskCount(selectedPro);
+  }
 }
 
 const renderProject = ()=> {
