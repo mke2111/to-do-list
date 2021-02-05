@@ -46,7 +46,7 @@ const body = () => {
   // Tasks Title
 
   const taskTitleCont = document.createElement('div');
-  taskTitleCont.classList.add('task-title-cont', 'flex', 'justify-around', 'pb-3');
+  taskTitleCont.classList.add('task-title-cont', 'flex', 'justify-around', 'mb-3', 'border-b-2', 'border-gray-500');
 
   const taskTitle = document.createElement('h2');
   taskTitle.classList.add('task-title', 'text-red-600');
@@ -97,6 +97,11 @@ const body = () => {
   taskFormBtn.type = 'button';
   taskFormBtn.innerHTML = 'Create';
 
+  const error = document.createElement('h6');
+  error.innerText = 'Enter all form fields';
+  error.style.display = 'none';
+  error.classList.add('text-red-700', 'text-xs', 'error')
+
   // Task delete button
 
   const deleteCont = document.createElement('div');
@@ -140,6 +145,7 @@ const body = () => {
   taskForm.appendChild(taskDescription);
   taskForm.appendChild(taskDueDate);
   taskForm.appendChild(taskPriority);
+  taskForm.appendChild(error);
   taskForm.appendChild(taskFormBtn);
 
   deleteCont.appendChild(clearTaskBtn);

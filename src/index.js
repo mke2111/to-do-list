@@ -38,6 +38,7 @@ const newTaskDuedate = document.querySelector('.task-duedate');
 const newTaskPriority = document.querySelector('.task-priority');
 const taskFormBtn = document.querySelector('.create-task-btn');
 const addTask = document.querySelector('.add-form');
+const error = document.querySelector('.error');
 
 // Clear complete task button
 
@@ -182,12 +183,19 @@ taskFormBtn.addEventListener('click', e => {
   const taskDescription = newTaskDescription.value;
   const taskDuedate = newTaskDuedate.value;
   const taskPriority = newTaskPriority.value;
-  if(taskName == null || taskName === '' || taskDescription == null || taskDescription === '' || taskDuedate == null || taskDuedate === '' || taskPriority == null || taskPriority === '') return
+  if(taskName === '' || taskDescription === '' || taskDuedate === '' || taskPriority === '') {
+    error.style.display = 'block';
+    return;
+  }
+  error.style.display = 'none';
+
   const listTask = createTask(taskName, taskDescription, taskDuedate, taskPriority);
-  newTaskInput.value = null;
-  newTaskDescription.value = null;
-  newTaskDuedate.value = null;
-  newTaskPriority.value = null;
+
+  const inputs = [newTaskInput, newTaskDescription, newTaskDuedate, newTaskPriority];
+  inputs.forEach(input => {
+    input.value = null;
+  })
+
   const selectedPro = projects.find(pro => pro.id === selectedProId);
   selectedPro.tasks.push(listTask);
   newTaskForm.classList.remove('block');
