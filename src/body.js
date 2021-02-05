@@ -1,5 +1,5 @@
 const body = () => {
-  // Project section
+  // Projects
   const bodyCont = document.createElement('div');
   bodyCont.classList.add('body-cont', 'flex', 'w-3/6', 'mx-auto', 'pt-24');
 
@@ -38,8 +38,65 @@ const body = () => {
   btnDelPro.classList.add('btn-delet');
   btnDelPro.innerHTML = 'Delete project';
 
+  //Tasks
+
+  const tasksCont = document.createElement('div');
+  tasksCont.classList.add('task-cont');
+
+  // Tasks Title
+
+  const taskTitleCont = document.createElement('div');
+  taskTitleCont.classList.add('task-title-cont', 'flex');
+
+  const taskTitle = document.createElement('h2');
+  taskTitle.classList.add('task-title');
+  taskTitle.innerHTML = 'My tasks';
+
+  const tasksCount = document.createElement('p');
+  tasksCount.classList.add('tasks-count');
+  tasksCount.innerHTML = '1 task remaining';
+
+  // Tasks Body
+
+  const tasksBodyCont = document.createElement('div');
+  tasksBodyCont.classList.add('tasks-body');
+  
+  const taskCont = document.createElement('div');
+  taskCont.classList.add('task-conteiner', 'flex');
+
+
+  // Task Form
+
+  const taskFormCont = document.createElement('div');
+  taskFormCont.classList.add('new-task-creator');
+
+  const taskForm = document.createElement('form');
+  taskForm.classList.add('task-form');
+
+  const taskFormInput = document.createElement('input');
+  taskFormInput.type = 'text';
+  taskFormInput.classList.add('task-input');
+  taskFormInput.placeholder = 'Add a New task';
+
+  const taskFormBtn = document.createElement('button');
+  taskFormBtn.type = 'button';
+  taskFormBtn.innerHTML = 'Create';
+
+  // Task delete button
+
+  const deleteCont = document.createElement('div');
+  deleteCont.classList.add('delete-cont');
+
+  const clearTaskBtn = document.createElement('button');
+  clearTaskBtn.classList.add('clear-btn');
+  clearTaskBtn.type = 'button';
+  clearTaskBtn.innerHTML = 'Clear Completed Tasks';
+
   bodyCont.appendChild(projectCont);
+  bodyCont.appendChild(tasksCont);
+
   projectCont.appendChild(projTitleCont);
+
   projTitleCont.appendChild(projTitle);
   projectCont.appendChild(listCont);
   listCont.appendChild(unList);
@@ -48,105 +105,21 @@ const body = () => {
   formProj.appendChild(btnAddPro);
   listCont.appendChild(btnDelPro);
 
-  // Todo List section
+  tasksCont.appendChild(taskTitleCont);
+  tasksCont.appendChild(tasksBodyCont);
+  tasksCont.appendChild(deleteCont);
 
-  // const tasksCont = document.createElement('div');
-  // tasksCont.classList.add('task-cont');
+  taskTitleCont.appendChild(taskTitle);
+  taskTitleCont.appendChild(tasksCount);
 
-  // const listTitleCont = document.createElement('div');
-  // listTitleCont.classList.add('list-title-cont', 'flex');
+  tasksBodyCont.appendChild(taskCont);
 
-  // const listTitle = document.createElement('h2');
-  // listTitle.classList.add('list-title');
-  // listTitle.innerHTML = 'MY LISTS';
+  tasksBodyCont.appendChild(taskFormCont);
+  taskFormCont.appendChild(taskForm);
+  taskForm.appendChild(taskFormInput);
+  taskForm.appendChild(taskFormBtn);
 
-  // const listCount = document.createElement('p');
-  // listCount.classList.add('list-count');
-  // listCount.innerHTML = '1 task remaining';
-
-  // const listContainer = document.createElement('div');
-  // listContainer.classList.add('list-container');
-
-  // const ulList = document.createElement('div');
-  // ulList.classList.add('all-lists');
-
-  // const formList = document.createElement('form');
-  // formList.setAttribute('action', '');
-  // formList.classList.add('list-form', 'hidden', 'flex-col', 'border', 'border-gray-400', 'rounded-md', 'p-3' );
-
-  // const inputListTitle = document.createElement('input');
-  // inputListTitle.classList.add('list-title-input', 'border-b', 'border-gray-600', 'pt-2');
-  // inputListTitle.setAttribute('type', 'text');
-  // inputListTitle.setAttribute('placeholder', 'Add Title');
-
-  // const inputListDescription = document.createElement('input');
-  // inputListDescription.classList.add('list-description-input', 'border-b', 'border-gray-600', 'pt-2');
-  // inputListDescription.setAttribute('type', 'text');
-  // inputListDescription.setAttribute('placeholder', 'Add Description');
-
-  // const inputListDueDate = document.createElement('input');
-  // inputListDueDate.classList.add('list-due-date-input', 'border-b', 'border-gray-600', 'pt-2');
-  // inputListDueDate.setAttribute('type', 'date');
-  // inputListDueDate.setAttribute('placeholder', 'Set Due Date');
-
-  // const inputListPriority = document.createElement('input');
-  // inputListPriority.classList.add('list-priority-input', 'border-b', 'border-gray-600', 'pt-2');
-  // inputListPriority.setAttribute('type', 'text');
-  // inputListPriority.setAttribute('placeholder', 'Set Priority');
-
-  // const btnAddList = document.createElement('button');
-  // btnAddList.setAttribute('type', 'button');
-  // btnAddList.classList.add('list-add-btn', 'w-max', 'mx-auto', 'px-2', 'mt-2', 'bg-green-400', 'rounded-md');
-  // btnAddList.innerHTML = 'Create';
-
-  // const btnNewTask = document.createElement('button');
-  // btnNewTask.setAttribute('type','button');
-  // btnNewTask.classList.add('btn-new-task', 'w-max', 'mx-auto', 'px-2', 'mt-2', 'bg-green-400', 'rounded-md');
-  // btnNewTask.innerHTML = 'New Task';
-
-  // const btnDelList = document.createElement('button');
-  // btnDelList.setAttribute('type', 'button');
-  // btnDelList.classList.add('list-delete-btn', 'bg-red-400', 'rounded-md');
-  // btnDelList.innerHTML = 'Delete Completed task';
-
-  // template
-  // const list = document.createElement('template');
-  // list.id = 'list-template';
-
-  // const listContTemp = document.createElement('div');
-  // listContTemp.classList.add('temp-cont');
-
-  // const input = document.createElement('input');
-  // input.classList.add('list-input');
-  // input.type = 'checkbox';
-
-  // const label = document.createElement('label');
-  // label.classList.add('list-label');
-  // const span = document.createElement('span');
-  // span.classList.add('custom-checkbox');
-
-  // list.appendChild(listContTemp);
-  // listContTemp.appendChild(input);
-  // listContTemp.appendChild(label);
-  // label.appendChild(span);
-
-  // listTitleCont.appendChild(listTitle);
-  // listTitleCont.appendChild(listCount);
-  // listContainer.appendChild(ulList);
-  // formList.appendChild(inputListTitle);
-  // formList.appendChild(inputListDescription);
-  // formList.appendChild(inputListDueDate);
-  // formList.appendChild(inputListPriority);
-  // formList.appendChild(btnAddList);
-  // tasksCont.appendChild(listTitleCont);
-  // tasksCont.appendChild(listContainer);
-  // listContainer.appendChild(formList);
-  // listContainer.appendChild(btnNewTask);
-  // listContainer.appendChild(btnDelList);
-  // bodyCont.appendChild(tasksCont);
-  // bodyCont.appendChild(list);
-
-  
+  deleteCont.appendChild(clearTaskBtn);
 
 
   return bodyCont

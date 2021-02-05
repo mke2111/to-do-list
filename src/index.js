@@ -12,32 +12,31 @@ const bigCont = document.querySelector('#content');
 bigCont.appendChild(header());
 bigCont.appendChild(body());
 
+// Project's variables
+
 const listConte = document.querySelector('.all-projects');
 const newProForm = document.querySelector('.pro-form');
 const newProInput = document.querySelector('.pro-input');
-const addProBtn = document.querySelector('.pro-btn');
+const btnAddPro = document.querySelector('.pro-btn');
 const deleteProBtn = document.querySelector('.btn-delet');
 
-// // todos
-// const todoContainer = document.querySelector('.task-cont');
-// const todoLists = document.querySelector('.all-lists');
-// const projectTitle = document.querySelector('.list-title');
-// const listForm = document.querySelector('.list-form');
-// const listTitle = document.querySelector('.list-title-input');
-// const listDescription = document.querySelector('.list-description-input');
-// const listDueDate = document.querySelector('.list-due-date-input');
-// const listPriority = document.querySelector('.list-priority-input');
-// const deleteListBtn = document.querySelector('.list-delete-btn');
-// const listTemp = document.querySelector('#list-template');
-// const newListInput = document.querySelector('.list-input');
-// const dispBtnTask = document.querySelector('.btn-new-task');
-// const listCount = document.querySelector('.list-count');
+// Task's variables
+
+const tasksCont = document.querySelector('.task-cont');
+const taskTitle = document.querySelector('.task-title');
+const tasksCount = document.querySelector('.tasks-count');
+const tasksConte = document.querySelector('.task-conteiner');
+const taskTemplate = document.getElementById('task-template');
 
 const createList = (nam) => {
   return { 
     id: Date.now().toString(),
     name: nam,
-    lists: []
+    tasks: [{
+      id: 'qweqwe',
+      name: 'asdqwe',
+      complete: false
+    }]
   }
 }
 
@@ -63,45 +62,43 @@ const save = () => {
   localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedProId);
 }
 
+const renderTaskCount = (selectedPro) => {
+  const incompleteTaskCount = selectedPro.tasks.filter(task => !task.complete).length;
+  const taskString = incompleteTaskCount === 1 ? 'task' : 'tasks' ;
+  tasksCount.innerHTML = `${incompleteTaskCount} ${taskString} remaining`;
+}
+
+const renderTasks = (selectedPro) => {
+  selectedPro.tasks.forEach(task => {
+    const taskElement = document.importNode(taskTemplate.content, true);
+    const checkbox = taskElement.querySelector('input');
+    checkbox.id = task.id;
+    checkbox.checked = task.complete;
+    const label = taskElement.querySelector('label');
+    label.htmlFor = task.id;
+    label.append(task.name);
+    tasksConte.appendChild(taskElement);
+  })
+}
+
 const render = ()=> {
   clearElement(listConte);
-  renderProjects();
+  renderProject();
 
-  // const selectedProject = projects.find(project => project.id === selectedProId);
-  // if (selectedProId == null) {
-  //   todoContainer.style.display = 'none';
-  // } else {
-  //   todoContainer.style.display = '';
-  //   projectTitle.innerText = selectedProject.name;
-    // renderCountTasks(selectedProject)
-    // clearElement(todoLists);
-    // renderLists(selectedProject); 
+  const selectedPro = projects.find(pro => pro.id === selectedProId);
+
+  if(selectedProId == null) {
+    tasksCont.style.display = 'none';
+  } else {
+    tasksCont.style.display = '';
+    taskTitle.innerHTML = selectedPro.name;
+    renderTaskCount(selectedPro);
+    clearElement(tasksConte);
+    renderTasks(selectedPro);
   }
 }
 
-// const renderCountTasks = (selectedProject) => {
-//   const incomList = selectedProject.lists.filter(list => !list.complete).length;
-//   const listString = incomList === 1 ? 'task' : 'tasks';
-//   listCount.innerHTML = `${incomList} ${listString} remaining`;
-// }
-
-// const renderLists = (selectedProject) => {
-//   selectedProject.lists.forEach(list => {
-//     const listElement = document.querySelector('#list-template');
-//     const checkbox = document.querySelector('.list-input');
-    
-//     checkbox.id = list.id;
-//     checkbox.checked = list.complete;
-
-//     const label = document.querySelector('.list-label');
-//     label.htmlFor = list.id;
-//     label.append(list.title);
-
-//     todoLists.appendChild(listElement);
-//   })
-// }
-
-const renderProjects = () => {
+const renderProject = ()=> {
   projects.forEach(project => {
     const projElement = document.createElement('li');
     projElement.dataset.projId = project.id
@@ -136,7 +133,7 @@ newProForm.addEventListener('submit', e => {
   saveAndRender()
 });
 
-addProBtn.addEventListener('click', e => {
+btnAddPro.addEventListener('click', e => {
   e.preventDefault();
   const proName = newProInput.value;
   if(proName == null || proName === '') return
