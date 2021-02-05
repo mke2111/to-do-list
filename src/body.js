@@ -87,10 +87,19 @@ const body = () => {
   taskDueDate.classList.add('task-duedate', 'border', 'border-gray-300', 'rounded-md', 'my-1');
   taskDueDate.placeholder = 'Add duedate';
 
-  const taskPriority = document.createElement('input');
-  taskPriority.type = 'text';
+  const taskPriority = document.createElement('select');
   taskPriority.classList.add('task-priority', 'border', 'border-gray-300', 'rounded-md', 'my-1');
   taskPriority.placeholder = 'Add priority';
+
+  const priorityList = ['HIGH', 'MEDIUM', 'LOW'];
+
+  priorityList.forEach(one => {
+    const option = document.createElement('option');
+    option.innerText = one;
+
+    taskPriority.options.add(option);
+
+  })
 
   const taskFormBtn = document.createElement('button');
   taskFormBtn.classList.add('create-task-btn', 'bg-green-500', 'hover:bg-green-700', 'px-2', 'py-1', 'rounded-md', 'text-white');
