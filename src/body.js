@@ -62,7 +62,7 @@ const body = () => {
   tasksBodyCont.classList.add('tasks-body');
   
   const taskCont = document.createElement('div');
-  taskCont.classList.add('task-conteiner', 'flex');
+  taskCont.classList.add('task-conteiner');
 
 
   // Task Form
@@ -79,6 +79,7 @@ const body = () => {
   taskFormInput.placeholder = 'Add a New task';
 
   const taskFormBtn = document.createElement('button');
+  taskFormBtn.classList.add('create-task-btn')
   taskFormBtn.type = 'button';
   taskFormBtn.innerHTML = 'Create';
 

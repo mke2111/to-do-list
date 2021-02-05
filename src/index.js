@@ -28,6 +28,12 @@ const tasksCount = document.querySelector('.tasks-count');
 const tasksConte = document.querySelector('.task-conteiner');
 const taskTemplate = document.getElementById('task-template');
 
+// Task's Form
+
+const newTaskForm = document.querySelector('.task-form');
+const newTaskInput = document.querySelector('.task-input');
+const taskFormBtn = document.querySelector('.create-task-btn');
+
 const createList = (nam) => {
   return { 
     id: Date.now().toString(),
@@ -40,16 +46,13 @@ const createList = (nam) => {
   }
 }
 
-// const createTodo = (title, description, duedate, priority) => {
-//   return { 
-//     id: Date.now().toString(),
-//     title: title,
-//     description: description,
-//     duedate: duedate,
-//     priority: priority,
-//     complete: false
-//   }
-// }
+const createTask = (name) => {
+  return {
+    id: Date.now().toString(),
+    name: name,
+    complete: false
+  }
+}
 
 const clearElement = (elem)=> {
   while (elem.firstChild) {
@@ -116,6 +119,8 @@ const saveAndRender = () => {
   render();
 }
 
+
+
 bigCont.addEventListener('click', e => {
   if(e.target.tagName.toLowerCase() === 'li') {
     selectedProId = e.target.dataset.projId;
@@ -132,6 +137,38 @@ newProForm.addEventListener('submit', e => {
   projects.push(listPro)
   saveAndRender()
 });
+
+newTaskForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const taskName = newTaskInput.value;
+  if(taskName == null || taskName === '') return
+  const listTask = createTask(taskName);
+  newTaskInput.value = null;
+  const selectedPro = projects.find(pro => pro.id === selectedProId);
+  selectedPro.tasks.push(listTask);
+  saveAndRender()
+});
+
+taskFormBtn.addEventListener('click', e => {
+  e.preventDefault();
+  const taskName = newTaskInput.value;
+  if(taskName == null || taskName === '') return
+  const listTask = createTask(taskName);
+  newTaskInput.value = null;
+  const selectedPro = projects.find(pro => pro.id === selectedProId);
+  selectedPro.tasks.push(listTask);
+  saveAndRender()
+});
+
+tasksConte.addEventListener('click', e=> {
+  if(e.target.tagName.toLowerCase() === 'input') {
+    const selectedPro = projects.find(pro => pro.id === selectedProId);
+    const selectedTask = selectedPro.tasks.find(task => task.id === e.target.id);
+    selectedTask.complete = e.target.checked;
+    save();
+    renderTaskCount(selectedPro);
+  }
+})
 
 btnAddPro.addEventListener('click', e => {
   e.preventDefault();
@@ -150,30 +187,5 @@ deleteProBtn.addEventListener('click', e => {
   saveAndRender();
 })
 
-// dispBtnTask.addEventListener('click', e => {
-//   e.preventDefault();
-//   if(listForm.classList.contains('hidden')){
-//     listForm.classList.remove('hidden');
-//     listForm.classList.add('flex');
-//   } else {
-//     listForm.classList.remove('flex');
-//     listForm.classList.add('hidden');
-//   }
-// })
-
-// listForm.addEventListener('click', e => {
-//   e.preventDefault();
-//   if(listTitle.value == null || listTitle.value === '' || listDescription.value == null || listDescription.value === '' || listDueDate.value == null || listDueDate.value === '' || listPriority.value == null || listPriority.value === '') return;
-
-//   const listTodo = createTodo(listTitle.value, listDescription.value, listDueDate.value, listPriority.value);
-//   listTitle.value = null;
-//   listDescription.value = null;
-//   listDueDate.value = null;
-//   listPriority.value = null;
-  
-//   const selectedProject = projects.find(project => project.id === selectedProId);
-//   selectedProject.lists.push(listTodo);
-//   saveAndRender()
-// });
 
 render();
