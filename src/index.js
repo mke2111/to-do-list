@@ -8,6 +8,7 @@ let projects = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
 let selectedProId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
 
 const bigCont = document.querySelector('#content');
+bigCont.classList.add('bg-blue-300', 'h-screen');
 
 bigCont.appendChild(header());
 bigCont.appendChild(body());
@@ -33,6 +34,7 @@ const taskTemplate = document.getElementById('task-template');
 const newTaskForm = document.querySelector('.task-form');
 const newTaskInput = document.querySelector('.task-input');
 const taskFormBtn = document.querySelector('.create-task-btn');
+const addTask = document.querySelector('.add-form');
 
 // Clear complete task button
 
@@ -50,10 +52,13 @@ const createList = (nam) => {
   }
 }
 
-const createTask = (name) => {
+const createTask = (name, description, duedate, priority) => {
   return {
     id: Date.now().toString(),
     name: name,
+    description: description,
+    duedate: duedate,
+    priority: priority,
     complete: false
   }
 }
@@ -140,16 +145,16 @@ newProForm.addEventListener('submit', e => {
   saveAndRender()
 });
 
-newTaskForm.addEventListener('submit', e => {
-  e.preventDefault();
-  const taskName = newTaskInput.value;
-  if(taskName == null || taskName === '') return
-  const listTask = createTask(taskName);
-  newTaskInput.value = null;
-  const selectedPro = projects.find(pro => pro.id === selectedProId);
-  selectedPro.tasks.push(listTask);
-  saveAndRender()
-});
+// newTaskForm.addEventListener('submit', e => {
+//   e.preventDefault();
+//   const taskName = newTaskInput.value;
+//   if(taskName == null || taskName === '') return
+//   const listTask = createTask(taskName);
+//   newTaskInput.value = null;
+//   const selectedPro = projects.find(pro => pro.id === selectedProId);
+//   selectedPro.tasks.push(listTask);
+//   saveAndRender()
+// });
 
 taskFormBtn.addEventListener('click', e => {
   e.preventDefault();
@@ -159,6 +164,8 @@ taskFormBtn.addEventListener('click', e => {
   newTaskInput.value = null;
   const selectedPro = projects.find(pro => pro.id === selectedProId);
   selectedPro.tasks.push(listTask);
+  newTaskForm.classList.remove('block');
+  newTaskForm.classList.add('hidden');
   saveAndRender()
 });
 
@@ -170,7 +177,7 @@ tasksConte.addEventListener('click', e=> {
     save();
     renderTaskCount(selectedPro);
   }
-})
+});
 
 btnAddPro.addEventListener('click', e => {
   e.preventDefault();
@@ -192,6 +199,16 @@ clearTaskBtn.addEventListener('click', e => {
   const selectedPro = projects.find(pro => pro.id === selectedProId);
   selectedPro.tasks = selectedPro.tasks.filter(task => !task.complete);
   saveAndRender();
+})
+
+addTask.addEventListener('click', () => {
+  if (newTaskForm.classList.contains('hidden')) {
+    newTaskForm.classList.remove('hidden');
+    newTaskForm.classList.add('block');
+  } else {
+    newTaskForm.classList.remove('block');
+    newTaskForm.classList.add('hidden');
+  }
 })
 
 render();
