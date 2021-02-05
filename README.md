@@ -16,7 +16,7 @@
 
 ## Live Demo
 
-[Live Demo](hhttps://mke2111.github.io/to-do-list/ )
+[Live Demo](https://mke2111.github.io/to-do-list/ )
 
 
 ## Getting Started
