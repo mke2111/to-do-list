@@ -58,10 +58,10 @@ const createList = (nam) => ({
 
 // default project
 
-  const defaultProject = createList('Default');
-  if (projects.includes('Default')) {
-    projects.push(defaultProject);
-  }
+const defaultProject = createList('Default');
+if (!projects.includes('Default')) {
+  projects.push(defaultProject);
+}
 
 const createTask = (name, description, duedate, priority) => ({
   id: Date.now().toString(),
