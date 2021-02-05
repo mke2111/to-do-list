@@ -16,7 +16,6 @@ bigCont.appendChild(body());
 // Project's variables
 
 const listConte = document.querySelector('.all-projects');
-const newProForm = document.querySelector('.pro-form');
 const newProInput = document.querySelector('.pro-input');
 const btnAddPro = document.querySelector('.pro-btn');
 const deleteProBtn = document.querySelector('.btn-delet');
@@ -56,6 +55,13 @@ const createList = (nam) => ({
     complete: false,
   }],
 });
+
+// default project
+
+  const defaultProject = createList('Default');
+  if (projects.includes('Default')) {
+    projects.push(defaultProject);
+  }
 
 const createTask = (name, description, duedate, priority) => ({
   id: Date.now().toString(),
