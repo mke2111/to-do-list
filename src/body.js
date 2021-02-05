@@ -60,24 +60,10 @@ const body = () => {
 
   const tasksBodyCont = document.createElement('div');
   tasksBodyCont.classList.add('tasks-body');
-
-  //-----this gonna be replaced with template------
-
+  
   const taskCont = document.createElement('div');
   taskCont.classList.add('task-conteiner', 'flex');
 
-  const taskInput = document.createElement('input');
-  taskInput.classList.add('input-check');
-  taskInput.type = 'checkbox';
-
-  const taskLabel = document.createElement('label');
-  taskLabel.classList.add('task-label');
-
-  const taskLabelSpan = document.createElement('span');
-  taskLabelSpan.classList.add('custom-check');
-  taskLabelSpan.innerHTML = 'Test task';
-
-  //----------------------------------------------------
 
   // Task Form
 
@@ -127,9 +113,6 @@ const body = () => {
   taskTitleCont.appendChild(tasksCount);
 
   tasksBodyCont.appendChild(taskCont);
-  taskCont.appendChild(taskInput);
-  taskCont.appendChild(taskLabel);
-  taskLabel.appendChild(taskLabelSpan);
 
   tasksBodyCont.appendChild(taskFormCont);
   taskFormCont.appendChild(taskForm);

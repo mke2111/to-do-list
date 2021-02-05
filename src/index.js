@@ -26,12 +26,17 @@ const tasksCont = document.querySelector('.task-cont');
 const taskTitle = document.querySelector('.task-title');
 const tasksCount = document.querySelector('.tasks-count');
 const tasksConte = document.querySelector('.task-conteiner');
+const taskTemplate = document.getElementById('task-template');
 
 const createList = (nam) => {
   return { 
     id: Date.now().toString(),
     name: nam,
-    tasks: []
+    tasks: [{
+      id: 'qweqwe',
+      name: 'asdqwe',
+      complete: false
+    }]
   }
 }
 
@@ -52,6 +57,19 @@ const renderTaskCount = (selectedPro) => {
   tasksCount.innerHTML = `${incompleteTaskCount} ${taskString} remaining`;
 }
 
+const renderTasks = (selectedPro) => {
+  selectedPro.tasks.forEach(task => {
+    const taskElement = document.importNode(taskTemplate.content, true);
+    const checkbox = taskElement.querySelector('input');
+    checkbox.id = task.id;
+    checkbox.checked = task.complete;
+    const label = taskElement.querySelector('label');
+    label.htmlFor = task.id;
+    label.append(task.name);
+    tasksConte.appendChild(taskElement);
+  })
+}
+
 const render = ()=> {
   clearElement(listConte);
   renderProject();
@@ -64,6 +82,8 @@ const render = ()=> {
     tasksCont.style.display = '';
     taskTitle.innerHTML = selectedPro.name;
     renderTaskCount(selectedPro);
+    clearElement(tasksConte);
+    renderTasks(selectedPro);
   }
 }
 
