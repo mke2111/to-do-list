@@ -123,8 +123,6 @@ const saveAndRender = () => {
   render();
 }
 
-
-
 bigCont.addEventListener('click', e => {
   if(e.target.tagName.toLowerCase() === 'li') {
     selectedProId = e.target.dataset.projId;
@@ -184,7 +182,6 @@ btnAddPro.addEventListener('click', e => {
   saveAndRender()
 });
 
-
 deleteProBtn.addEventListener('click', e => {
   projects = projects.filter(pro => pro.id !== selectedProId);
   selectedProId = null;
@@ -196,6 +193,5 @@ clearTaskBtn.addEventListener('click', e => {
   selectedPro.tasks = selectedPro.tasks.filter(task => !task.complete);
   saveAndRender();
 })
-
 
 render();
