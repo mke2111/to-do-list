@@ -96,10 +96,8 @@ const body = () => {
   priorityList.forEach(one => {
     const option = document.createElement('option');
     option.innerText = one;
-
     taskPriority.options.add(option);
-
-  })
+  });
 
   const taskFormBtn = document.createElement('button');
   taskFormBtn.classList.add('create-task-btn', 'bg-green-500', 'hover:bg-green-700', 'px-2', 'py-1', 'rounded-md', 'text-white');
