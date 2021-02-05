@@ -9,6 +9,6 @@ const header = () => {
   headerCont.appendChild(title);
 
   return headerCont;
-}
+};
 
 export default header;

@@ -13,13 +13,13 @@ module.exports = {
       {
         test: /\.s?css$/,
         use: [
-        'style-loader',
-        'css-loader',
-        'resolve-url-loader',
-        'postcss-loader',
-        'sass-loader',
+          'style-loader',
+          'css-loader',
+          'resolve-url-loader',
+          'postcss-loader',
+          'sass-loader',
         ],
-      }, 
+      },
       {
 
         test: /\.(png|svg|jpg|jpeg|gif)$/i,

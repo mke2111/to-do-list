@@ -20,17 +20,17 @@ const body = () => {
   unList.classList.add('all-projects', 'text-red-600');
 
   const formProj = document.createElement('form');
-  formProj.setAttribute('action', '')
+  formProj.setAttribute('action', '');
   formProj.classList.add('pro-form', 'flex', 'flex-col');
 
   const inputPro = document.createElement('input');
   inputPro.classList.add('pro-input');
-  inputPro.setAttribute('type', 'text')
+  inputPro.setAttribute('type', 'text');
   inputPro.setAttribute('placeholder', 'Add a New Project');
 
   const btnAddPro = document.createElement('button');
   btnAddPro.setAttribute('type', 'button');
-  btnAddPro.classList.add('pro-btn', 'bg-green-500', 'hover:bg-green-700', 'px-2', 'py-1', 'rounded-md', 'text-white')
+  btnAddPro.classList.add('pro-btn', 'bg-green-500', 'hover:bg-green-700', 'px-2', 'py-1', 'rounded-md', 'text-white');
   btnAddPro.innerHTML = 'New Project';
 
   const btnDelPro = document.createElement('button');
@@ -38,7 +38,7 @@ const body = () => {
   btnDelPro.classList.add('btn-delet', 'bg-red-500', 'hover:bg-red-700', 'px-2', 'py-1', 'rounded-md', 'text-white', 'mt-3');
   btnDelPro.innerHTML = 'Delete project';
 
-  //Tasks
+  // Tasks
 
   const tasksCont = document.createElement('div');
   tasksCont.classList.add('task-cont', 'w-3/4', 'p-5');
@@ -60,7 +60,7 @@ const body = () => {
 
   const tasksBodyCont = document.createElement('div');
   tasksBodyCont.classList.add('tasks-body');
-  
+
   const taskCont = document.createElement('div');
   taskCont.classList.add('task-conteiner', 'text-blue-800');
 
@@ -93,14 +93,14 @@ const body = () => {
   taskPriority.placeholder = 'Add priority';
 
   const taskFormBtn = document.createElement('button');
-  taskFormBtn.classList.add('create-task-btn', 'bg-green-500', 'hover:bg-green-700', 'px-2', 'py-1', 'rounded-md', 'text-white')
+  taskFormBtn.classList.add('create-task-btn', 'bg-green-500', 'hover:bg-green-700', 'px-2', 'py-1', 'rounded-md', 'text-white');
   taskFormBtn.type = 'button';
   taskFormBtn.innerHTML = 'Create';
 
   const error = document.createElement('h6');
   error.innerText = 'Enter all form fields';
   error.style.display = 'none';
-  error.classList.add('text-red-700', 'text-xs', 'error')
+  error.classList.add('text-red-700', 'text-xs', 'error');
 
   // Task delete button
 
@@ -151,7 +151,7 @@ const body = () => {
   deleteCont.appendChild(clearTaskBtn);
   deleteCont.appendChild(addTask);
 
-  return bodyCont
-}
+  return bodyCont;
+};
 
 export default body;

@@ -44,48 +44,44 @@ const error = document.querySelector('.error');
 
 const clearTaskBtn = document.querySelector('.clear-btn');
 
-const createList = (nam) => {
-  return { 
-    id: Date.now().toString(),
-    name: nam,
-    tasks: [{
-      id: 'qweqwe',
-      name: 'name',
-      description: 'description',
-      duedate: 'duedate',
-      priority: 'priority',
-      complete: false
-    }]
-  }
-}
+const createList = (nam) => ({
+  id: Date.now().toString(),
+  name: nam,
+  tasks: [{
+    id: 'qweqwe',
+    name: 'name',
+    description: 'description',
+    duedate: 'duedate',
+    priority: 'priority',
+    complete: false,
+  }],
+});
 
-const createTask = (name, description, duedate, priority) => {
-  return {
-    id: Date.now().toString(),
-    name: name,
-    description: description,
-    duedate: duedate,
-    priority: priority,
-    complete: false
-  }
-}
+const createTask = (name, description, duedate, priority) => ({
+  id: Date.now().toString(),
+  name,
+  description,
+  duedate,
+  priority,
+  complete: false,
+});
 
-const clearElement = (elem)=> {
+const clearElement = (elem) => {
   while (elem.firstChild) {
     elem.removeChild(elem.firstChild);
   }
-}
+};
 
 const save = () => {
   localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(projects));
   localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedProId);
-}
+};
 
 const renderTaskCount = (selectedPro) => {
   const incompleteTaskCount = selectedPro.tasks.filter(task => !task.complete).length;
-  const taskString = incompleteTaskCount === 1 ? 'task' : 'tasks' ;
+  const taskString = incompleteTaskCount === 1 ? 'task' : 'tasks';
   tasksCount.innerHTML = `${incompleteTaskCount} ${taskString} remaining`;
-}
+};
 
 const renderTasks = (selectedPro) => {
   selectedPro.tasks.forEach(task => {
@@ -111,16 +107,29 @@ const renderTasks = (selectedPro) => {
     priority.append(task.priority);
 
     tasksConte.appendChild(taskElement);
-  })
-}
+  });
+};
 
-const render = ()=> {
+const renderProject = () => {
+  projects.forEach(project => {
+    const projElement = document.createElement('li');
+    projElement.dataset.projId = project.id;
+    projElement.classList.add('list-proj', 'cursor-pointer', 'pb-2', 'font-medium');
+    projElement.innerText = project.name;
+    if (project.id === selectedProId) {
+      projElement.classList.add('active-pro', 'font-bold');
+    }
+    listConte.appendChild(projElement);
+  });
+};
+
+const render = () => {
   clearElement(listConte);
   renderProject();
 
   const selectedPro = projects.find(pro => pro.id === selectedProId);
 
-  if(selectedProId == null) {
+  if (selectedProId == null) {
     tasksCont.style.display = 'none';
   } else {
     tasksCont.style.display = '';
@@ -129,53 +138,19 @@ const render = ()=> {
     clearElement(tasksConte);
     renderTasks(selectedPro);
   }
-}
-
-const renderProject = ()=> {
-  projects.forEach(project => {
-    const projElement = document.createElement('li');
-    projElement.dataset.projId = project.id
-    projElement.classList.add('list-proj', 'cursor-pointer', 'pb-2', 'font-medium');
-    projElement.innerText = project.name;
-    if(project.id === selectedProId) {
-      projElement.classList.add('active-pro', 'font-bold');
-    }
-    listConte.appendChild(projElement);
-  })
-}
+};
 
 const saveAndRender = () => {
   save();
   render();
-}
+};
 
 bigCont.addEventListener('click', e => {
-  if(e.target.tagName.toLowerCase() === 'li') {
+  if (e.target.tagName.toLowerCase() === 'li') {
     selectedProId = e.target.dataset.projId;
     saveAndRender();
   }
-})
-
-// newProForm.addEventListener('submit', e => {
-//   e.preventDefault();
-//   const proName = newProInput.value;
-//   if(proName == null || proName === '') return
-//   const listPro = createList(proName);
-//   newProInput.value = null;
-//   projects.push(listPro)
-//   saveAndRender()
-// });
-
-// newTaskForm.addEventListener('submit', e => {
-//   e.preventDefault();
-//   const taskName = newTaskInput.value;
-//   if(taskName == null || taskName === '') return
-//   const listTask = createTask(taskName);
-//   newTaskInput.value = null;
-//   const selectedPro = projects.find(pro => pro.id === selectedProId);
-//   selectedPro.tasks.push(listTask);
-//   saveAndRender()
-// });
+});
 
 taskFormBtn.addEventListener('click', e => {
   e.preventDefault();
@@ -183,7 +158,7 @@ taskFormBtn.addEventListener('click', e => {
   const taskDescription = newTaskDescription.value;
   const taskDuedate = newTaskDuedate.value;
   const taskPriority = newTaskPriority.value;
-  if(taskName === '' || taskDescription === '' || taskDuedate === '' || taskPriority === '') {
+  if (taskName === '' || taskDescription === '' || taskDuedate === '' || taskPriority === '') {
     error.style.display = 'block';
     return;
   }
@@ -194,17 +169,17 @@ taskFormBtn.addEventListener('click', e => {
   const inputs = [newTaskInput, newTaskDescription, newTaskDuedate, newTaskPriority];
   inputs.forEach(input => {
     input.value = null;
-  })
+  });
 
   const selectedPro = projects.find(pro => pro.id === selectedProId);
   selectedPro.tasks.push(listTask);
   newTaskForm.classList.remove('block');
   newTaskForm.classList.add('hidden');
-  saveAndRender()
+  saveAndRender();
 });
 
-tasksConte.addEventListener('click', e=> {
-  if(e.target.tagName.toLowerCase() === 'input') {
+tasksConte.addEventListener('click', e => {
+  if (e.target.tagName.toLowerCase() === 'input') {
     const selectedPro = projects.find(pro => pro.id === selectedProId);
     const selectedTask = selectedPro.tasks.find(task => task.id === e.target.id);
     selectedTask.complete = e.target.checked;
@@ -216,24 +191,24 @@ tasksConte.addEventListener('click', e=> {
 btnAddPro.addEventListener('click', e => {
   e.preventDefault();
   const proName = newProInput.value;
-  if(proName == null || proName === '') return
+  if (proName == null || proName === '') return;
   const listPro = createList(proName);
   newProInput.value = null;
-  projects.push(listPro)
-  saveAndRender()
+  projects.push(listPro);
+  saveAndRender();
 });
 
 deleteProBtn.addEventListener('click', e => {
   projects = projects.filter(pro => pro.id !== selectedProId);
   selectedProId = null;
   saveAndRender();
-})
+});
 
 clearTaskBtn.addEventListener('click', e => {
   const selectedPro = projects.find(pro => pro.id === selectedProId);
   selectedPro.tasks = selectedPro.tasks.filter(task => !task.complete);
   saveAndRender();
-})
+});
 
 addTask.addEventListener('click', () => {
   if (newTaskForm.classList.contains('hidden')) {
@@ -243,6 +218,6 @@ addTask.addEventListener('click', () => {
     newTaskForm.classList.remove('block');
     newTaskForm.classList.add('hidden');
   }
-})
+});
 
 render();
