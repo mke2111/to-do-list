@@ -8,7 +8,7 @@ let projects = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
 let selectedProId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
 
 const bigCont = document.querySelector('#content');
-bigCont.classList.add('bg-blue-300', 'h-screen');
+bigCont.classList.add('bg-gray-200', 'h-screen');
 
 bigCont.appendChild(header());
 bigCont.appendChild(body());
@@ -135,10 +135,10 @@ const renderProject = ()=> {
   projects.forEach(project => {
     const projElement = document.createElement('li');
     projElement.dataset.projId = project.id
-    projElement.classList.add('list-proj', 'cursor-pointer');
+    projElement.classList.add('list-proj', 'cursor-pointer', 'pb-2', 'font-medium');
     projElement.innerText = project.name;
     if(project.id === selectedProId) {
-      projElement.classList.add('active-pro');
+      projElement.classList.add('active-pro', 'font-bold');
     }
     listConte.appendChild(projElement);
   })

@@ -4,7 +4,7 @@ const body = () => {
   bodyCont.classList.add('body-cont', 'flex', 'w-4/6', 'mx-auto', 'pt-19', 'mt-12', 'shadow-2xl', 'bg-blue-200', 'rounded-lg', 'justify-around', 'border-r-2', 'border-blue-900');
 
   const projectCont = document.createElement('div');
-  projectCont.classList.add('proj-cont', 'border', 'border-r-2', 'border-blue-300', 'pr-5', 'w-1/4', 'p-5');
+  projectCont.classList.add('proj-cont', 'border-r-2', 'border-blue-300', 'pr-5', 'w-1/4', 'p-5');
 
   const projTitleCont = document.createElement('div');
   projTitleCont.classList.add('pro-title-cont');
