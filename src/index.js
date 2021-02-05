@@ -34,6 +34,10 @@ const newTaskForm = document.querySelector('.task-form');
 const newTaskInput = document.querySelector('.task-input');
 const taskFormBtn = document.querySelector('.create-task-btn');
 
+// Clear complete task button
+
+const clearTaskBtn = document.querySelector('.clear-btn');
+
 const createList = (nam) => {
   return { 
     id: Date.now().toString(),
@@ -184,6 +188,12 @@ btnAddPro.addEventListener('click', e => {
 deleteProBtn.addEventListener('click', e => {
   projects = projects.filter(pro => pro.id !== selectedProId);
   selectedProId = null;
+  saveAndRender();
+})
+
+clearTaskBtn.addEventListener('click', e => {
+  const selectedPro = projects.find(pro => pro.id === selectedProId);
+  selectedPro.tasks = selectedPro.tasks.filter(task => !task.complete);
   saveAndRender();
 })
 
