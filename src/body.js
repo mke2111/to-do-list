@@ -162,7 +162,7 @@ const body = () => {
   const taskFormEditBtn = document.createElement('button');
   taskFormEditBtn.classList.add('edit-task-btn', 'bg-green-500', 'hover:bg-green-700', 'px-2', 'py-1', 'rounded-md', 'text-white');
   taskFormEditBtn.type = 'button';
-  taskFormEditBtn.innerHTML = 'Create';
+  taskFormEditBtn.innerHTML = 'Update';
 
   const error1 = document.createElement('h6');
   error1.innerText = 'Enter all form fields';
