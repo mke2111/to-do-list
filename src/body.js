@@ -124,6 +124,51 @@ const body = () => {
   addTask.type = 'button';
   addTask.innerHTML = 'Add Task';
 
+  // Task form Edit
+
+  const taskFormEditCont = document.createElement('div');
+  taskFormEditCont.classList.add('edit-task-creator');
+
+  const taskFormEdit = document.createElement('form');
+  taskFormEdit.classList.add('task-form-edit', 'hidden', 'w-min');
+
+  const taskFormEditInput = document.createElement('input');
+  taskFormEditInput.type = 'text';
+  taskFormEditInput.classList.add('task-input-edit', 'border', 'border-gray-300', 'rounded-md', 'my-1');
+  taskFormEditInput.placeholder = 'Add title';
+
+  const taskEditDescription = document.createElement('input');
+  taskEditDescription.type = 'text';
+  taskEditDescription.classList.add('task-description-edit', 'border', 'border-gray-300', 'rounded-md', 'my-1');
+  taskEditDescription.placeholder = 'Add description';
+
+  const taskEDitDueDate = document.createElement('input');
+  taskEDitDueDate.type = 'date';
+  taskEDitDueDate.classList.add('task-duedate-edit', 'border', 'border-gray-300', 'rounded-md', 'my-1');
+  taskEDitDueDate.placeholder = 'Add duedate';
+
+  const taskEditPriority = document.createElement('select');
+  taskEditPriority.classList.add('task-priority-edit', 'border', 'border-gray-300', 'rounded-md', 'my-1');
+  taskEditPriority.placeholder = 'Add priority';
+
+  const priorityListEdit = ['HIGH', 'MEDIUM', 'LOW'];
+
+  priorityListEdit.forEach(one => {
+    const option1 = document.createElement('option');
+    option1.innerText = one;
+    taskEditPriority.options.add(option1);
+  });
+
+  const taskFormEditBtn = document.createElement('button');
+  taskFormEditBtn.classList.add('edit-task-btn', 'bg-green-500', 'hover:bg-green-700', 'px-2', 'py-1', 'rounded-md', 'text-white');
+  taskFormEditBtn.type = 'button';
+  taskFormEditBtn.innerHTML = 'Create';
+
+  const error1 = document.createElement('h6');
+  error1.innerText = 'Enter all form fields';
+  error1.style.display = 'none';
+  error1.classList.add('text-red-700', 'text-xs', 'error1');
+
   bodyCont.appendChild(projectCont);
   bodyCont.appendChild(tasksCont);
 
@@ -154,6 +199,15 @@ const body = () => {
   taskForm.appendChild(taskPriority);
   taskForm.appendChild(error);
   taskForm.appendChild(taskFormBtn);
+
+  tasksBodyCont.appendChild(taskFormEditCont);
+  taskFormEditCont.appendChild(taskFormEdit);
+  taskFormEdit.appendChild(taskFormEditInput);
+  taskFormEdit.appendChild(taskEditDescription);
+  taskFormEdit.appendChild(taskEDitDueDate);
+  taskFormEdit.appendChild(taskEditPriority);
+  taskFormEdit.appendChild(error1);
+  taskFormEdit.appendChild(taskFormEditBtn);
 
   deleteCont.appendChild(clearTaskBtn);
   deleteCont.appendChild(addTask);

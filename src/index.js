@@ -43,6 +43,20 @@ const error = document.querySelector('.error');
 
 const clearTaskBtn = document.querySelector('.clear-btn');
 
+// Edit task form
+
+const editTaskForm = document.querySelector('.task-form-edit');
+const editTaskInput = document.querySelector('.task-input-edit');
+const editTaskDescription = document.querySelector('.task-description-edit');
+const editTaskDuedate = document.querySelector('.task-duedate-edit');
+const editTaskPriority = document.querySelector('.task-priority-edit');
+const taskFormEditBtn = document.querySelector('.edit-task-btn');
+const error1 = document.querySelector('.error1');
+
+// Edit task button
+
+const editTaskBtn = document.querySelector('.edit');
+
 const createList = (nam) => ({
   id: Date.now().toString(),
   name: nam,
@@ -216,6 +230,7 @@ clearTaskBtn.addEventListener('click', e => {
   saveAndRender();
 });
 
+
 addTask.addEventListener('click', () => {
   if (newTaskForm.classList.contains('hidden')) {
     newTaskForm.classList.remove('hidden');
@@ -223,6 +238,16 @@ addTask.addEventListener('click', () => {
   } else {
     newTaskForm.classList.remove('block');
     newTaskForm.classList.add('hidden');
+  }
+});
+
+editTaskBtn.addEventListener('click', () => {
+  if(editTaskForm.classList.contains('hidden')) {
+    editTaskForm.classList.remove('hidden');
+    editTaskForm.classList.add('block');
+  } else {
+    editTaskForm.classList.remove('block');
+    editTaskForm.classList.add('hidden');
   }
 });
 
