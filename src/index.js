@@ -55,7 +55,6 @@ const editTaskDescription = document.querySelector('.task-description-edit');
 const editTaskDuedate = document.querySelector('.task-duedate-edit');
 const editTaskPriority = document.querySelector('.task-priority-edit');
 const taskFormEditBtn = document.querySelector('.edit-task-btn');
-const error1 = document.querySelector('.error1');
 
 // Edit task button
 
@@ -74,9 +73,26 @@ const createList = (nam) => ({
 
 // default project
 
-const defaultProject = createList('Default');
-if (!projects.includes('Default')) {
-  projects.push(defaultProject);
+const def = () => {
+  const defaultProject = createList('Default');
+
+  let count = false;
+  console.log(count);
+
+  projects.forEach(project => {
+    if (project.name === 'Default') {
+      count = true;
+    }
+    console.log(count);
+    
+  })
+    
+
+  console.log(count); 
+  if (count === false) {
+    projects.push(defaultProject);
+    count = true;
+  }
 }
 
 const createTask = (name, description, duedate, priority) => ({
@@ -179,6 +195,7 @@ const renderProject = () => {
 
 const render = () => {
   clearElement(listConte);
+  def();
   renderProject();
 
   const selectedPro = projects.find(pro => pro.id === selectedProId);
