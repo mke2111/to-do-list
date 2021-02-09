@@ -75,25 +75,19 @@ const createList = (nam) => ({
 
 const def = () => {
   const defaultProject = createList('Default');
-
   let count = false;
-  console.log(count);
 
   projects.forEach(project => {
     if (project.name === 'Default') {
       count = true;
     }
-    console.log(count);
-    
-  })
-    
+  });
 
-  console.log(count); 
   if (count === false) {
     projects.push(defaultProject);
     count = true;
   }
-}
+};
 
 const createTask = (name, description, duedate, priority) => ({
   id: Date.now().toString(),
