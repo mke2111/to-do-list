@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="src/CSS/style.css"> -->
+  <title>To Dos</title>
+</head>
+<body>
+  <div id="content"></div>
+  <div id="myModal" class="modal hidden fixed z-20 bg-gray-800 opacity-80 left-0 top-0  w-screen pt-48 h-screen">
+
+    <!-- Modal content -->
+    <div class="modal-content bg-gray-50 m-auto z-50 w-2/6 pl-10">
+      <p>First check the complete box for this to-do</p>
+    </div>
+  
+  </div>
+  <template id="task-template">
+    <div class="task flex justify-between">
+      <input type="checkbox" />
+      <label>
+        <span class="custom-checkbox "></span>
+      </label>
+      <p class="description text-gray-700 "></p>
+      <p class="duedate text-gray-700 "></p>
+      <p class="priority text-gray-700 "></p>
+      <button class="edit">Edit<span class="alert hidden text-red-700"></span></button>
+    </div>
+  </template>
+  <script src="main.js"></script>
+</body>
+</html>
