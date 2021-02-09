@@ -3,11 +3,11 @@ import body from './body';
 
 const LOCAL_STORAGE_LIST_KEY = 'task.lists';
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId';
-const LOCAL_STORAGE_SELECTED_TASK_ID = 'task.selectedTaskId';
+// const LOCAL_STORAGE_SELECTED_TASK_ID = 'task.selectedTaskId';
 
 let projects = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
 let selectedProId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
-let selectedTaskId = localStorage.getItem(LOCAL_STORAGE_SELECTED_TASK_ID);
+// let selectedTaskId = localStorage.getItem(LOCAL_STORAGE_SELECTED_TASK_ID);
 
 const bigCont = document.querySelector('#content');
 bigCont.classList.add('bg-gray-200', 'h-screen');
@@ -59,8 +59,6 @@ const error1 = document.querySelector('.error1');
 
 // Edit task button
 
-
-
 const createList = (nam) => ({
   id: Date.now().toString(),
   name: nam,
@@ -100,7 +98,7 @@ const clearElement = (elem) => {
 const save = () => {
   localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(projects));
   localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedProId);
-  localStorage.setItem(LOCAL_STORAGE_SELECTED_TASK_ID, selectedTaskId);
+  // localStorage.setItem(LOCAL_STORAGE_SELECTED_TASK_ID, selectedTaskId);
 };
 
 const renderTaskCount = (selectedPro) => {
@@ -133,9 +131,7 @@ const renderTasks = (selectedPro) => {
     priority.append(task.priority);
 
     const editTaskBtn = taskElement.querySelector('.edit');
-    editTaskBtn.dataset.taskId = task.id
-
-    const alertt = taskElement.querySelector('.alert');
+    editTaskBtn.dataset.taskId = task.id;
 
     editTaskBtn.addEventListener('click', e => {
       if (task.complete) {
@@ -143,30 +139,27 @@ const renderTasks = (selectedPro) => {
         editTaskDescription.value = task.description;
         editTaskDuedate.value = task.duedate;
         editTaskPriority.value = task.priority;
-  
-        if(editTaskForm.classList.contains('hidden')) {
+
+        if (editTaskForm.classList.contains('hidden')) {
           editTaskForm.classList.remove('hidden');
           editTaskForm.classList.add('block');
         } else {
           editTaskForm.classList.remove('block');
           editTaskForm.classList.add('hidden');
         }
-  
+
         const selectedPro = projects.find(pro => pro.id === selectedProId);
         selectedPro.tasks = selectedPro.tasks.filter(task => !task.complete);
       } else {
-        modal.style.display = "block";
+        modal.style.display = 'block';
 
-        window.onclick = function(event) {
-          if (event.target == modal) {
-            modal.style.display = "none";
+        window.onclick = e => {
+          if (e.target === modal) {
+            modal.style.display = 'none';
           }
-        }
-
+        };
       }
     });
-
-
     tasksConte.appendChild(taskElement);
   });
 };
@@ -259,15 +252,7 @@ taskFormEditBtn.addEventListener('click', e => {
   });
 
   const selectedPro = projects.find(pro => pro.id === selectedProId);
-
-  if (listTask.id === selectedTaskId) {
-
-    selectedPro.tasks.splice()
-    selectedPro.tasks.push(listTask);
-  } else {
-    selectedPro.tasks.push(listTask);
-  }
-
+  selectedPro.tasks.push(listTask);
   editTaskForm.classList.remove('block');
   editTaskForm.classList.add('hidden');
   saveAndRender();
