@@ -15,6 +15,8 @@ bigCont.classList.add('bg-gray-200', 'h-screen');
 bigCont.appendChild(header());
 bigCont.appendChild(body());
 
+const modal = document.getElementById('myModal');
+
 // Project's variables
 
 const listConte = document.querySelector('.all-projects');
@@ -63,7 +65,7 @@ const createList = (nam) => ({
   id: Date.now().toString(),
   name: nam,
   tasks: [{
-    id: 'qweqwe',
+    id: Date.now().toString(),
     name: 'name',
     description: 'description',
     duedate: 'duedate',
@@ -133,27 +135,35 @@ const renderTasks = (selectedPro) => {
     const editTaskBtn = taskElement.querySelector('.edit');
     editTaskBtn.dataset.taskId = task.id
 
+    const alertt = taskElement.querySelector('.alert');
+
     editTaskBtn.addEventListener('click', e => {
-
-      if (e.target.tagName.toLowerCase() === 'button') {
-        selectedTaskId = e.target.dataset.taskId;
-        saveAndRender();
-      }
-    
-      editTaskInput.value = task.name;
-      editTaskDescription.value = task.description;
-
-      if(editTaskForm.classList.contains('hidden')) {
-        editTaskForm.classList.remove('hidden');
-        editTaskForm.classList.add('block');
+      if (task.complete) {
+        editTaskInput.value = task.name;
+        editTaskDescription.value = task.description;
+        editTaskDuedate.value = task.duedate;
+        editTaskPriority.value = task.priority;
+  
+        if(editTaskForm.classList.contains('hidden')) {
+          editTaskForm.classList.remove('hidden');
+          editTaskForm.classList.add('block');
+        } else {
+          editTaskForm.classList.remove('block');
+          editTaskForm.classList.add('hidden');
+        }
+  
+        const selectedPro = projects.find(pro => pro.id === selectedProId);
+        selectedPro.tasks = selectedPro.tasks.filter(task => !task.complete);
       } else {
-        editTaskForm.classList.remove('block');
-        editTaskForm.classList.add('hidden');
-      }
+        modal.style.display = "block";
 
-      const selectedPro = projects.find(pro => pro.id === selectedProId);
-      selectedPro.tasks = selectedPro.tasks.filter(task => !task.complete);
-      
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+
+      }
     });
 
 
@@ -230,7 +240,6 @@ taskFormBtn.addEventListener('click', e => {
 });
 
 taskFormEditBtn.addEventListener('click', e => {
-  // console.log('6')
   e.preventDefault();
   const taskName = editTaskInput.value;
   const taskDescription = editTaskDescription.value;
@@ -250,7 +259,15 @@ taskFormEditBtn.addEventListener('click', e => {
   });
 
   const selectedPro = projects.find(pro => pro.id === selectedProId);
-  selectedPro.tasks.push(listTask);
+
+  if (listTask.id === selectedTaskId) {
+
+    selectedPro.tasks.splice()
+    selectedPro.tasks.push(listTask);
+  } else {
+    selectedPro.tasks.push(listTask);
+  }
+
   editTaskForm.classList.remove('block');
   editTaskForm.classList.add('hidden');
   saveAndRender();
@@ -287,7 +304,6 @@ clearTaskBtn.addEventListener('click', e => {
   selectedPro.tasks = selectedPro.tasks.filter(task => !task.complete);
   saveAndRender();
 });
-
 
 addTask.addEventListener('click', () => {
   if (newTaskForm.classList.contains('hidden')) {
