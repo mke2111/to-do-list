@@ -312,3 +312,5 @@ addTask.addEventListener('click', () => {
 });
 
 render();
+
+export { createTask };
