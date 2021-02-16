@@ -3,7 +3,7 @@ const header = () => {
   headerCont.classList.add('header-cont', 'pt-5');
 
   const title = document.createElement('h1');
-  title.setAttribute('id','h-title');
+  title.setAttribute('id', 'h-title');
   title.classList.add('header-title', 'text-center', 'text-blue-700', 'text-4xl', 'font-bold');
   title.innerHTML = 'Your To-Do Lists';
 

@@ -9,9 +9,9 @@ describe('MODULE TASKS', () => {
         description: 'description',
         duedate: '25-02-2021',
         priority: 'HIGH',
-        complete: false
-      }]
-    }
+        complete: false,
+      }],
+    },
   ];
 
   it('Get id from list object', () => {

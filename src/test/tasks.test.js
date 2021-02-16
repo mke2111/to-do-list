@@ -6,7 +6,7 @@ describe('MODULE TASKS', () => {
       description: 'description',
       duedate: '25-02-2021',
       priority: 'HIGH',
-      complete: false
+      complete: false,
     },
     {
       id: 2,
@@ -14,7 +14,7 @@ describe('MODULE TASKS', () => {
       description: 'description',
       duedate: '25-02-2021',
       priority: 'HIGH',
-      complete: false
+      complete: false,
     },
   ];
 
