@@ -1,5 +1,7 @@
 import header from './header';
 import body from './body';
+import createList from './createList';
+import createTask from './createTask';
 
 const LOCAL_STORAGE_LIST_KEY = 'task.lists';
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId';
@@ -54,21 +56,6 @@ const editTaskDuedate = document.querySelector('.task-duedate-edit');
 const editTaskPriority = document.querySelector('.task-priority-edit');
 const taskFormEditBtn = document.querySelector('.edit-task-btn');
 
-// Edit task button
-
-const createList = (nam) => ({
-  id: Date.now().toString(),
-  name: nam,
-  tasks: [{
-    id: Date.now().toString(),
-    name: 'name',
-    description: 'description',
-    duedate: 'duedate',
-    priority: 'priority',
-    complete: false,
-  }],
-});
-
 // default project
 
 const def = () => {
@@ -86,16 +73,6 @@ const def = () => {
     count = true;
   }
 };
-
-const createTask = (name, description, duedate, priority) => ({
-  id: Date.now().toString(),
-  name,
-  description,
-  duedate,
-  priority,
-  complete: false,
-
-});
 
 const clearElement = (elem) => {
   while (elem.firstChild) {
