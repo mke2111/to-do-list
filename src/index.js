@@ -3,11 +3,9 @@ import body from './body';
 
 const LOCAL_STORAGE_LIST_KEY = 'task.lists';
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId';
-// const LOCAL_STORAGE_SELECTED_TASK_ID = 'task.selectedTaskId';
 
 let projects = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
 let selectedProId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
-// let selectedTaskId = localStorage.getItem(LOCAL_STORAGE_SELECTED_TASK_ID);
 
 const bigCont = document.querySelector('#content');
 bigCont.classList.add('bg-gray-200', 'h-screen');
@@ -108,7 +106,6 @@ const clearElement = (elem) => {
 const save = () => {
   localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(projects));
   localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedProId);
-  // localStorage.setItem(LOCAL_STORAGE_SELECTED_TASK_ID, selectedTaskId);
 };
 
 const renderTaskCount = (selectedPro) => {
