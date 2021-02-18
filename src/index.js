@@ -117,7 +117,7 @@ const renderTasks = (selectedPro) => {
     const editTaskBtn = taskElement.querySelector('.edit');
     editTaskBtn.dataset.taskId = task.id;
 
-    editTaskBtn.addEventListener('click', e => {
+    editTaskBtn.addEventListener('click', () => {
       if (task.complete) {
         editTaskInput.value = task.name;
         editTaskDescription.value = task.description;
@@ -263,13 +263,13 @@ btnAddPro.addEventListener('click', e => {
   saveAndRender();
 });
 
-deleteProBtn.addEventListener('click', e => {
+deleteProBtn.addEventListener('click', () => {
   projects = projects.filter(pro => pro.id !== selectedProId);
   selectedProId = null;
   saveAndRender();
 });
 
-clearTaskBtn.addEventListener('click', e => {
+clearTaskBtn.addEventListener('click', () => {
   const selectedPro = projects.find(pro => pro.id === selectedProId);
   selectedPro.tasks = selectedPro.tasks.filter(task => !task.complete);
   saveAndRender();
