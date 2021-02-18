@@ -53,6 +53,15 @@ OR
 - Then open the `index.html` file using a browser.
 - Enjoy the simple To-do List.
 
+## Tests
+
+> To run the tests, follow the steps below.
+
+- Run `npm install --save-dev jest` this your terminal.
+- Then run `npm run test` to run the tests for the to-do lists project.
+- Enjoy!
+
+
 ## Authors
 
 ### Author 1

@@ -1,13 +1,13 @@
 import header from './header';
 import body from './body';
+import createList from './createList';
+import createTask from './createTask';
 
 const LOCAL_STORAGE_LIST_KEY = 'task.lists';
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId';
-// const LOCAL_STORAGE_SELECTED_TASK_ID = 'task.selectedTaskId';
 
 let projects = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
 let selectedProId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
-// let selectedTaskId = localStorage.getItem(LOCAL_STORAGE_SELECTED_TASK_ID);
 
 const bigCont = document.querySelector('#content');
 bigCont.classList.add('bg-gray-200', 'h-screen');
@@ -56,21 +56,6 @@ const editTaskDuedate = document.querySelector('.task-duedate-edit');
 const editTaskPriority = document.querySelector('.task-priority-edit');
 const taskFormEditBtn = document.querySelector('.edit-task-btn');
 
-// Edit task button
-
-const createList = (nam) => ({
-  id: Date.now().toString(),
-  name: nam,
-  tasks: [{
-    id: Date.now().toString(),
-    name: 'name',
-    description: 'description',
-    duedate: 'duedate',
-    priority: 'priority',
-    complete: false,
-  }],
-});
-
 // default project
 
 const def = () => {
@@ -89,16 +74,6 @@ const def = () => {
   }
 };
 
-const createTask = (name, description, duedate, priority) => ({
-  id: Date.now().toString(),
-  name,
-  description,
-  duedate,
-  priority,
-  complete: false,
-
-});
-
 const clearElement = (elem) => {
   while (elem.firstChild) {
     elem.removeChild(elem.firstChild);
@@ -108,7 +83,6 @@ const clearElement = (elem) => {
 const save = () => {
   localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(projects));
   localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedProId);
-  // localStorage.setItem(LOCAL_STORAGE_SELECTED_TASK_ID, selectedTaskId);
 };
 
 const renderTaskCount = (selectedPro) => {
@@ -143,7 +117,7 @@ const renderTasks = (selectedPro) => {
     const editTaskBtn = taskElement.querySelector('.edit');
     editTaskBtn.dataset.taskId = task.id;
 
-    editTaskBtn.addEventListener('click', e => {
+    editTaskBtn.addEventListener('click', () => {
       if (task.complete) {
         editTaskInput.value = task.name;
         editTaskDescription.value = task.description;
@@ -289,13 +263,13 @@ btnAddPro.addEventListener('click', e => {
   saveAndRender();
 });
 
-deleteProBtn.addEventListener('click', e => {
+deleteProBtn.addEventListener('click', () => {
   projects = projects.filter(pro => pro.id !== selectedProId);
   selectedProId = null;
   saveAndRender();
 });
 
-clearTaskBtn.addEventListener('click', e => {
+clearTaskBtn.addEventListener('click', () => {
   const selectedPro = projects.find(pro => pro.id === selectedProId);
   selectedPro.tasks = selectedPro.tasks.filter(task => !task.complete);
   saveAndRender();
